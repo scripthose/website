@@ -6,7 +6,7 @@ const Schema = mongoose.Schema;
 let postSchema = new Schema({
     postTitle: String,
     postPic: String,
-    postDate: String,
+    postDate: Date,
     postEditor: String,
     postTopic: String,
     postSubTitle: String,
@@ -30,7 +30,7 @@ let scriptorSchema = new Schema({
 
 // this model is made for comments system
 let commentSchema = new Schema({
-	postHeader: String,
+	postHeader: {type: Schema.Types.ObjectId, ref: 'post'},
 	commentName: String,
 	commentMsg: String,
 	commentEmail: String,
@@ -38,7 +38,7 @@ let commentSchema = new Schema({
 })
 
 // nubia products schema 
-let nubiaProduct = new Schema({
+let nubiaProductSchema = new Schema({
 	prodName: String,
 	prodPic: String,
 	prodPrice: Number,
@@ -47,18 +47,18 @@ let nubiaProduct = new Schema({
 })
 
 // create the schema on the database 
-let Post = mongoose.model('post', postSchema);
-let Scriptor = mongoose.model('scriptor', scriptorSchema);
-let Comment = mongoose.model('comment', commentSchema);
-let NubiaProduct = mongoose.model('nubiaProduct', nubiaProduct);
+const post = mongoose.model('post', postSchema);
+const scriptor = mongoose.model('scriptor', scriptorSchema);
+const comment = mongoose.model('comment', commentSchema);
+const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
 
 
 // exporting the models outside of the 
 module.exports = {
-	post: Post,
-	scriptor: Scriptor,
-	comment: Comment,
-	nubiaProd: NubiaProduct
+	post,
+	scriptor,
+	comment,
+	nubiaProduct
 }
 
 
