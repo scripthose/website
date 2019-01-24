@@ -3,19 +3,20 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 // This model is made for blog posters
-let postSchema = new Schema({
+const postSchema = new Schema({
     postTitle: String,
     postPic: String,
     postDate: Date,
     postEditor: String,
     postTopic: String,
     postSubTitle: String,
-    subTitleTopic: String
+	subTitconstopic: String,
+	comments: [{type: Schema.Types.ObjectId, ref: 'comment'}]
 });
 
 
 // this model is made for script house users
-let scriptorSchema = new Schema({
+const scriptorSchema = new Schema({
 	scriptorName: String,
 	scriptorPic: String,
 	scriptorDescription: String,
@@ -29,7 +30,7 @@ let scriptorSchema = new Schema({
 })
 
 // this model is made for comments system
-let commentSchema = new Schema({
+const commentSchema = new Schema({
 	postHeader: {type: Schema.Types.ObjectId, ref: 'post'},
 	commentName: String,
 	commentMsg: String,
@@ -38,7 +39,7 @@ let commentSchema = new Schema({
 })
 
 // nubia products schema 
-let nubiaProductSchema = new Schema({
+const nubiaProductSchema = new Schema({
 	prodName: String,
 	prodPic: String,
 	prodPrice: Number,

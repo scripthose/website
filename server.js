@@ -16,10 +16,6 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 const SocketServer = require('./socketServer');
 
-// make the database connection.
-mongoose.connect(keys.database.local, {useNewUrlParser: true}, () => {
-    console.log('connected to mongo db')
-})
 
 app.use(router.getPages); // use the external router file 
 app.use(bodyParser.json()); // use bodyParser json middleware
@@ -39,7 +35,11 @@ app.use(function(req, res, next){
     next();
 })
 
-// start listing for socket connections
+// make the database connection.
+mongoose.connect(keys.database.local, {useNewUrlParser: true}, () => {
+    console.log('Opened a new connection..');
+})
+
 SocketServer(io, app);
 
 // start the server..
