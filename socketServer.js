@@ -4,6 +4,7 @@ const models = require('./models/models');
 function SocketServer(io, app) {
   
   const connections = [];
+  let postsCache = [];
 
   // server sockets broadcaster
   io.sockets.on('connection', function(socket){
@@ -16,54 +17,31 @@ function SocketServer(io, app) {
 
     //disconnected
     socket.on('disconnect', function(data){
-        
         // removing the clients who are disconnected from the array
         connections.splice(connections.indexOf(socket), 1);
         console.log('Disconnected: %s sockets connected', connections.length);
     })
 
-    // getting id param and load the data on the blog post
-    app.get('/blog/post_number=:id', (req, res) => {
-        global.postIdUrl = req.params.id;
-
-        models.post.findOne({_id: postIdUrl}, function(err, data){
+    models.post.find().populate('comments').sort('-1').exec(function(err, posts){
             if(err) return console.error(err);
-
-            // console.log(data.postTitle)
-            res.render('post', {
-                postTitle: data.postTitle,
-                postPic: data.postPic,
-                postDate: data.postDate,
-                postEditor: data.postEditor,
-                postTopic: data.postTopic,
-                postSubTitle: data.postSubTitle,
-                subTitleTopic: data.subTitleTopic
-            });
-
-
-        });
-
-    })
-
-    // getting id param and load the data on the blog post
-    app.get('/nubia/products/product_number=:id', (req, res) => {
-        global.shopIdUrl = req.params.id;
-
-        models.nubiaProduct.findOne({_id: shopIdUrl}, function(err, data){
-            if(err) return console.error(err);
-
-            // console.log(data.postTitle)
-            res.render('shop', {
-                prodName: data.prodName,
-                prodPic: data.prodPic,
-                prodPrice: data.prodPrice,
-                prodDesc: data.prodDesc
-            });
-
-
-        });
-
-    })
+            for (let i in posts) {
+                let p = posts[i]
+                let post = {
+                    postId: p.id,
+                    postTitle: p.postTitle,
+                    postPic: p.postPic,
+                    postDate: p.postDate,
+                    postEditor: p.postEditor,
+                    postTopic: p.postTopic,
+                    postSubTitle: p.postSubTitle,
+                    subTitleTopic: p.subTitleTopic,
+                    comments: p.comments
+                }
+                postsCache.push(post);
+                // fetch all posts and send it to the client
+                socket.emit('send new post', post)
+            }
+    });
 
     // getting post data from script house dashboard
     socket.on('update post from dashboard', (data) => {
@@ -73,23 +51,12 @@ function SocketServer(io, app) {
             postEditor: data.postEditor,
             postTopic: data.postTopic,
             postSubTitle: data.postSubTitle,
-            subTitleTopic: data.subTitleTopic
-        
+            subTitleTopic: data.subTitleTopic,
+            comments: [],
         }).save().then((newPost) => {
-            
             // send the post from dashboard to clients without refreshing the page
-            io.sockets.emit('get the new post', newPost);
-            console.log(newPost)
-        });
-    });
-
-    // send the uploaded post to clients after a while
-    models.post.find(function(err, post){
-        if(err) return console.error(err);
-        
-        // fetch all posts and send it to the client
-        post.forEach(function(p){
-            socket.emit('send new post', {
+            let p = post
+            let post = {
                 postId: p.id,
                 postTitle: p.postTitle,
                 postPic: p.postPic,
@@ -97,47 +64,50 @@ function SocketServer(io, app) {
                 postEditor: p.postEditor,
                 postTopic: p.postTopic,
                 postSubTitle: p.postSubTitle,
-                subTitleTopic: p.subTitleTopic
-                
-            })
-        })
+                subTitleTopic: p.subTitleTopic,
+                comments: p.comments
+            }
+            postsCache.push(post);
+            postslength = postsCache.length;
+            sockets.emit('get the new post', newPost);
+            socket.emit('newPost', newPost);
+        });
+    });
+
+    // send the uploaded post to clients after a while
+    socket.on('getHomePagePosts', (limit=3) => {
+        // get sub post to views on home page and blog section
+        console.log(postsCache.length)
+        let j = 0;
+        for(let i=postsCache.length - 1; i > 0; i--) {
+            if (j >= limit || !postsCache[i]) return;
+            socket.emit('home page posts', postsCache[i]);
+            j++;
+        }
+    });
+
+    // send all the posts to the client
+    socket.on("getNewPosts", (len=-1) => {
+        if (len == postsCache.length) return;
+        for (let post of postsCache) {
+            // fetch all posts and send it to the client
+            socket.emit('send all post', post);
+        }
+    });
+
+    // send the most recent post to the client
+    socket.on('getRecentPosts', (limit=6) => {
+        let j = 0;
+        for (let i=postsCache.length - 1; i > 0; i--) {
+            if (j >= limit || !postsCache[i]) return;
+            socket.emit('recent post', postsCache[i]);
+            j++;
+        }
     })
-
-    // get sub post to views on recent posts on the side
-    models.post.find(function(err, post){
-        if(err) return console.error(err);
-
-        post.forEach(function(p){
-            socket.emit('recent post', {
-                postId: p.id,
-                postTitle: p.postTitle,
-                postPic: p.postPic,
-                postDate: p.postDate
-            })
-        })
-
-    }).limit(6);
-
-
-    // get sub post to views on home page and blog section
-    models.post.find(function(err, post){
-        if(err) return console.error(err);
-
-        post.forEach(function(p){
-            socket.emit('home page posts', {
-                postId: p.id,
-                postTitle: p.postTitle,
-                postPic: p.postPic,
-                postDate: p.postDate,
-                postEditor: p.postEditor,
-                postSubTitle: p.postSubTitle
-            })
-        })
-    }).limit(3)
-
 
     // comments system on the uploaded posts pages
     socket.on('post comment', function(data){
+        // console.log(data);
 
         new models.comment({
             postHeader: data.postHeader,
@@ -145,37 +115,21 @@ function SocketServer(io, app) {
             commentMsg: data.commentMsg,
             commentEmail: data.commentEmail,
             commentDate: data.commentDate
-        }).save().then((postComment) => {
-            // update comments immediately when done
-            models.comment.findOne({postHeader: postComment.postHeader}, function(err, post){
-                if(err) return console.error(err);
-                console.log(post)
-                io.sockets.emit('new message comment', post);
-
-            })
-
-        })    
-
+        }).save()
+            .then((postComment) => {
+                models.post.findOne({_id: postComment.postHeader}, (err, post) => {
+                    if (err) console.error(err);
+                    console.log(post)
+                    if (post.comments) {
+                        post.comments.push(postComment._id);
+                    } else {
+                        post.comments = [postComment._id]
+                    }
+                    console.log(post.comments);
+                    models.post.updateOne({_id: post._id}, post).exec();
+                });
+            })    
     });
-
-    models.comment.find().populate('postHeader').exec(function(err, comment){
-        if(err) return console.error(err);
-
-        socket.emit('send comments length', comment)
-        
-
-        // update comments after reloading
-        comment.forEach(function(c){
-            socket.emit('get post comment', {
-                postHeader: c.postHeader,
-                commentName: c.commentName,
-                commentMsg: c.commentMsg,
-                commentEmail: c.commentEmail,
-                commentDate: c.commentDate
-            })
-        })
-    
-    })
 
     // getting product info from dashboard
     socket.on('get nubia product from dashboard', function(data){
@@ -204,20 +158,23 @@ function SocketServer(io, app) {
         })
     }).limit(4)
 
-    models.nubiaProduct.find(function(err, prod){
-        if(err) return console.error(err);
-        prod.forEach(function(p){
-            socket.emit('fetch all product', {
-                prodId: p.id,
-                prodName: p.prodName,
-                prodPic: p.prodPic,
-                prodPrice: p.prodPrice,
-                prodDesc: p.prodDesc
-            })
-        })
-    })
+    socket.on('getAllProducts', () => {
+        models.nubiaProduct.find(function(err, prod){
+            if(err) return console.error(err);
+            prod.forEach(function(p){
+                socket.emit('sendAllProducts', {
+                    prodId: p.id,
+                    prodName: p.prodName,
+                    prodPic: p.prodPic,
+                    prodPrice: p.prodPrice,
+                    prodDesc: p.prodDesc
+                })
+            });
+        });
+    });
 
   });
+
 }
 
 module.exports = SocketServer;

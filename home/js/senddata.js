@@ -1,68 +1,48 @@
-// import { models } from "mongoose";
+(function(){
 
-let socket = io.connect('http://127.0.0.1:2000');
+	let postTitle = $('#title');
+	let appendPostOnBlog = $('.append-post-on-blog');
+	let appendPostOnResent = $('.append-post-on-resent');
+	let appendPostOnHomePage = $('.append-post-on-home-page');
 
-let blogPostData = function(){
+	let postHeader = postTitle.context.URL.split('=')[1];
 
-    let appendPostOnBlog = $('.append-post-on-blog');
-    let appendPostOnResent = $('.append-post-on-resent');
-    let appendPostOnHomePage = $('.append-post-on-home-page');
-
-
-    socket.on('send new post', (data) => {
-
-    	appendPostOnBlog.append(`<div class="col-12 col-lg-6"><div class="single-blog-post mb-50">\
-								<div class="post-thumbnail mb-30"><a href="/blog/post_number=${data.postId}">\
-								<img src="http://127.0.0.1:2000/img/bg-img/2.jpg" alt=""></a></div><div class="post-content">\
-								<a href="/blog/post_number=${data.postId}" class="post-title"><h5>${data.postTitle}</h5></a>\
-								<div class="post-meta"><a href="#"><i class="fa fa-clock-o" aria-hidden="true">\
-								</i>${data.postDate}</a><a href="#"><i class="fa fa-user" aria-hidden="true">\
-								</i> ${data.postEditor}</a></div><p class="post-excerpt">${data.postSubTitle}\
-								</p></div></div></div>`)
-
-    })
+	app.socket.on('send all post', (data) => {
+		appendPostOnBlog.append(app.markups.postMarkup(data));
+		app.postsLength++;
+		// console.log(postsLenth);
+	});
     
-    socket.on('recent post', (data) => {
+	app.socket.on('recent post', (data) => {
+		// check if the ids isn't matching so that 
+		// it wouldn't show the same post in the recent area.
+		if (data.postId !== postHeader) {
+			appendPostOnResent.append(app.markups.lastPostMarkup(data));
+		}
+	});
 
-    	appendPostOnResent.append(`<div class="single-latest-post d-flex align-items-center">\
-				<div class="post-thumb"><img src="http://127.0.0.1:2000/img/bg-img/1.jpg" alt="">\
-				</div><div class="post-content"><a href="/blog/post_number=${data.postId}" class="post-title">\
-				<h6>${data.postTitle}</h6></a>\
-				<a href="/blog/post_number=${data.postId}" class="post-date">${data.postDate}</a></div></div>`)
-    })
+	app.socket.on('home page posts', (data) => {
+		appendPostOnHomePage.append(app.markups.postMarkup(data));
+	});
 
+	app.socket.on('newPost', (data) => {
+		appendPostOnBlog.append(app.markups.postMarkup(data));
+		appendPostOnResent.append(app.markups.lastPostMarkup(data));
+		appendPostOnHomePage.append(app.markups.postMarkup(data));
+	});
 
-    socket.on('home page posts', (data) => {
-    	
+	if (/blog$/.test(location.pathname)) {
+		console.log(app.postsLength);
+		app.socket.emit('getNewPosts', app.postsLength);
+	}
 
-    	appendPostOnHomePage.append(`<div class="col-12 col-md-6 col-lg-4"><div class="single-blog-post mb-100">\
-									<div class="post-thumbnail mb-30"><a href="/blog/post_number=${data.postId}">\
-									<img src="http://127.0.0.1:2000/img/bg-img/offer-1.jpg" alt=""></a></div><div class="post-content">\
-									<a href="/blog/post_number=${data.postId}" class="post-title"><h5>${data.postTitle}</h5></a>\
-									<div class="post-meta"><a href="#">\
-									<i class="fa fa-clock-o" aria-hidden="true"></i>${data.postDate}</a>
-									<a href="#"><i class="fa fa-user" aria-hidden="true"></i>${data.postEditor}\
-									</a></div><p class="post-excerpt">${data.postSubTitle}</p></div></div></div>`)
-
-    })
-
-
-    // comments system
-    
-  //   let today = new Date(),
-  //   	hour = today.getHours(),
-  //   	min = today.getMinutes(),
-	 //    day = today.getDate(),
-	 //    month = today.getMonth()+1, //January is 0!
-		// year = today.getFullYear();
-
-   
+	if (location.pathname.includes('blog')) {
+		app.socket.emit('getRecentPosts');
+	}
+	
+	if (location.pathname === "/") {
+		app.socket.emit('getHomePagePosts', 2);
+	}
 	
 
-
-}();
-
-
-
-
-
+}());

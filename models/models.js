@@ -53,6 +53,28 @@ const scriptor = mongoose.model('scriptor', scriptorSchema);
 const comment = mongoose.model('comment', commentSchema);
 const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
 
+// let prod = {
+// 	prodName: 'String',
+// 	prodPic: 'http://localhost:2000/img/bg-img/46.png',
+// 	prodPrice: 12,
+// 	prodDesc: 'String',
+// 	prodLove: 'String'
+// }
+
+// let postTest = {
+// 	postTitle: 'Simple',
+// 	postPic: 'http://localhost:2000/img/bg-img/46.png',
+// 	postDate: new Date(Date.now()),
+// 	postEditor: 'Yassen',
+// 	postTopic: 'Test',
+// 	postSubTitle: "simplicty is the greatest sophistication",
+// 	subTitconstopic: "Unknown",
+// 	comments: [] 
+// }
+
+// new nubiaProduct(prod).save().then((data) => console.log(data));
+// new post(postTest).save().then((data) => console.log(data));
+
 
 // exporting the models outside of the 
 module.exports = {
