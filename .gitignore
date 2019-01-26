@@ -1,3 +1,7 @@
 bin/home/style.css
 bin/home/scss/style.scss
 node_modules/*
+
+bin/node_modules/*
+
+home/js/ejs.min.js
