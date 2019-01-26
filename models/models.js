@@ -60,7 +60,7 @@ const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
 // 	prodPic: 'http://localhost:2000/img/bg-img/46.png',
 // 	prodPrice: 12,
 // 	prodDesc: 'String',
-// 	prodLove: 'String'
+// 	prodLove: 1
 // }
 
 // let postTest = {

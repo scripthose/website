@@ -24,7 +24,7 @@
 	app.socket.on('home page posts', (data) => {
 		appendPostOnHomePage.append(app.markups.postMarkup(data));
 	});
-
+	
 	app.socket.on('newPost', (data) => {
 		appendPostOnBlog.append(app.markups.postMarkup(data));
 		appendPostOnResent.append(app.markups.lastPostMarkup(data));

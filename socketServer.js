@@ -3,7 +3,7 @@ const models = require('./models/models');
 
 function SocketServer(io) {
   
-  const connections = [];
+  let connections = [];
   let postsCache = [];
 
   // server sockets broadcaster
@@ -164,8 +164,7 @@ function SocketServer(io) {
             });
         });
     });
-
-  });
+    });
 
 }
 

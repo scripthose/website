@@ -82,7 +82,7 @@ router.get('/nubia/products/product_number=:id', (req, res) => {
     models.nubiaProduct.findOne({_id: shopIdUrl}, function(err, data){
         if(err) return console.error(err);
         res.render('shop', {
-            tilte: 'Shop',
+            title: 'Shop',
             prodName: data.prodName,
             prodPic: data.prodPic,
             prodPrice: data.prodPrice,

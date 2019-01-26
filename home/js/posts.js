@@ -12,7 +12,7 @@
 
     commentBtn.on('click', function(){
     	if(commentName.val() === ''){
-    		alert('Please fill in all fields')
+    		// alert('Please fill in all fields')
     	}else{
 				let comment = {
 					postHeader: postHeader,
@@ -25,7 +25,7 @@
 				comment.commentDate = comment.commentDate.toJSON();
 				appendPostComments.append(app.markups.commentMarkup(comment))
 
-				commentName.val('')
+			commentName.val('')
     		commentEmail.val('')
     		commentMsg.val('')
     	}
