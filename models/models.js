@@ -44,7 +44,9 @@ const nubiaProductSchema = new Schema({
 	prodPic: String,
 	prodPrice: Number,
 	prodDesc: String,
-	prodLove: String
+	prodLove: Number,
+	prodCat:{ type: String, require}, // product categories
+	prodTags:{type: String}
 })
 
 // create the schema on the database 
