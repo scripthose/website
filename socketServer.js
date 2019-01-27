@@ -3,6 +3,7 @@ const models = require('./models/models');
 
 function SocketServer(io) {
   
+
   let connections = [];
   let postsCache = [];
 
@@ -21,110 +22,6 @@ function SocketServer(io) {
         connections.splice(connections.indexOf(socket), 1);
         console.log('Disconnected: %s sockets connected', connections.length);
     })
-
-    models.post.find().populate('comments').sort('-1').exec(function(err, posts){
-            if(err) return console.error(err);
-            for (let i in posts) {
-                let p = posts[i]
-                let post = {
-                    postId: p.id,
-                    postTitle: p.postTitle,
-                    postPic: p.postPic,
-                    postDate: p.postDate,
-                    postEditor: p.postEditor,
-                    postTopic: p.postTopic,
-                    postSubTitle: p.postSubTitle,
-                    subTitleTopic: p.subTitleTopic,
-                    comments: p.comments
-                }
-                postsCache.push(post);
-                // fetch all posts and send it to the client
-                socket.emit('send new post', post)
-            }
-    });
-
-    // getting post data from script house dashboard
-    socket.on('update post from dashboard', (data) => {
-        new models.post({
-            postTitle: data.postTitle,
-            postDate: data.postDate,
-            postEditor: data.postEditor,
-            postTopic: data.postTopic,
-            postSubTitle: data.postSubTitle,
-            subTitleTopic: data.subTitleTopic,
-            comments: [],
-        }).save().then((newPost) => {
-            // send the post from dashboard to clients without refreshing the page
-            let p = post
-            let post = {
-                postId: p.id,
-                postTitle: p.postTitle,
-                postPic: p.postPic,
-                postDate: p.postDate,
-                postEditor: p.postEditor,
-                postTopic: p.postTopic,
-                postSubTitle: p.postSubTitle,
-                subTitleTopic: p.subTitleTopic,
-                comments: p.comments
-            }
-            postsCache.push(post);
-            postslength = postsCache.length;
-            sockets.emit('get the new post', newPost);
-            socket.emit('newPost', newPost);
-        });
-    });
-
-    // send the uploaded post to clients after a while
-    socket.on('getHomePagePosts', (limit=3) => {
-        // get sub post to views on home page and blog section
-        let j = 0;
-        for(let i=postsCache.length - 1; i > 0; i--) {
-            if (j >= limit || !postsCache[i]) return;
-            socket.emit('home page posts', postsCache[i]);
-            j++;
-        }
-    });
-
-    // send all the posts to the client
-    socket.on("getNewPosts", (len=-1) => {
-        if (len == postsCache.length) return;
-        for (let post of postsCache) {
-            // fetch all posts and send it to the client
-            socket.emit('send all post', post);
-        }
-    });
-
-    // send the most recent post to the client
-    socket.on('getRecentPosts', (limit=6) => {
-        let j = 0;
-        for (let i=postsCache.length - 1; i > 0; i--) {
-            if (j >= limit || !postsCache[i]) return;
-            socket.emit('recent post', postsCache[i]);
-            j++;
-        }
-    })
-
-    // comments system on the uploaded posts pages
-    socket.on('post comment', function(data){
-        new models.comment({
-            postHeader: data.postHeader,
-            commentName: data.commentName,
-            commentMsg: data.commentMsg,
-            commentEmail: data.commentEmail,
-            commentDate: data.commentDate
-        }).save()
-            .then((postComment) => {
-                models.post.findOne({_id: postComment.postHeader}, (err, post) => {
-                    if (err) console.error(err); console.log(post)
-                    if (post.comments) {
-                        post.comments.push(postComment._id);
-                    } else {
-                        post.comments = [postComment._id]
-                    }
-                    models.post.updateOne({_id: post._id}, post).exec();
-                });
-            })    
-    });
 
     // getting product info from dashboard
     socket.on('get nubia product from dashboard', function(data){

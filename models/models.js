@@ -2,19 +2,6 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
-// This model is made for blog posters
-const postSchema = new Schema({
-    postTitle: String,
-    postPic: String,
-    postDate: String,
-    postEditor: String,
-    postTopic: String,
-    postSubTitle: String,
-	subTitconstopic: String,
-	comments: [{type: Schema.Types.ObjectId, ref: 'comment'}]
-});
-
-
 // this model is made for script house users
 const scriptorSchema = new Schema({
 	scriptorName: String,
@@ -29,15 +16,6 @@ const scriptorSchema = new Schema({
 	}
 })
 
-// this model is made for comments system
-const commentSchema = new Schema({
-	postHeader: {type: Schema.Types.ObjectId, ref: 'post'},
-	commentName: String,
-	commentMsg: String,
-	commentEmail: String,
-	commentDate: Date,
-})
-
 // nubia products schema 
 const nubiaProductSchema = new Schema({
 	prodName: String,
@@ -49,11 +27,10 @@ const nubiaProductSchema = new Schema({
 	prodTags:{type: String}
 })
 
-// create the schema on the database 
-const post = mongoose.model('post', postSchema);
+// create the schema on the database
 const scriptor = mongoose.model('scriptor', scriptorSchema);
-const comment = mongoose.model('comment', commentSchema);
 const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
+
 
 // let prod = {
 // 	prodName: 'String',
@@ -78,11 +55,10 @@ const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
 // new post(postTest).save().then((data) => console.log(data));
 
 
+
 // exporting the models outside of the 
 module.exports = {
-	post,
 	scriptor,
-	comment,
 	nubiaProduct
 }
 
