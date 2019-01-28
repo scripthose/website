@@ -245,4 +245,19 @@
     };
     navbarFixed();
 
+
+    /*----------------------------------------------------*/
+    /*  Parallax Effect js
+    /*----------------------------------------------------*/
+	function parallaxEffect() {
+        $(window).scroll(function() {
+            var scroll = $(window).scrollTop();  
+            $('.bg-parallax').css({
+                'transform': 'translateY(' + scroll / 10 + '% )'
+            });
+
+        })
+	}
+    parallaxEffect();
+    
 })(jQuery);

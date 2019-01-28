@@ -175,3 +175,43 @@
 		padding-top: 50px;
 	}
 }
+
+
+
+
+@media (max-width:480px){
+	.banner_area .banner_inner .banner_content h2 {
+		font-size: 32px;
+	}
+}
+
+
+@media (min-width: 1200px) {
+	.container {
+	    max-width: 1170px; 
+	}
+}
+
+@media (min-width: 992px){
+	.col-lg-6 {
+  	    -ms-flex: 0 0 50%;
+   	    flex: 0 0 50%;
+   		max-width: 50%;
+	}
+}
+
+@media (max-width:575px){
+	.about_area .about_inner .about_left_text h3 br {
+		display: none;
+	}
+	.p_120 {
+		padding-top: 70px;
+		padding-bottom: 70px;
+	}
+}
+
+@media (max-width:991px){
+	.about_left_text{
+		margin-bottom: 50px;
+	}
+}

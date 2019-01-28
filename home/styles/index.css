@@ -1,0 +1,22 @@
+.main_btn {
+    width: 180px;
+    height:40px;
+    display: inline-block;
+    background: #70c745;
+    padding: 0px 35px;
+    color: #fff;
+    font-family: "Heebo", sans-serif;
+    font-size: 16px;
+    line-height: 38px;
+    border: 1px solid #47be75;
+    border-radius: 0px;
+    text-align: center;
+    cursor: pointer;
+    transition: all 300ms linear 0s;
+}
+
+.main_btn:hover {
+    background: transparent;
+    color: #47be75; 
+    font-size: 16px;
+}
