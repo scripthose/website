@@ -18,6 +18,7 @@
     <!-- Core Stylesheet -->
     <link rel="stylesheet" href="http://127.0.0.1:2000/style.css">
     <link rel="stylesheet" href="http://127.0.0.1:2000/substyle.css">
+    <link rel="stylesheet" href="http://127.0.0.1:2000/responsive.css">
     <!-- Scoket.io -->
     <script src="http://127.0.0.1:2000/js/socket.io.js"></script>
     <!-- the app namespace -->
@@ -36,63 +37,58 @@
             <img src="http://127.0.0.1:2000/img/core-img/script.png" alt="">
         </div>
     </div>
-
-    <header class="header-area">
-
-        <!-- ***** Navbar Area ***** -->
-        <div class="alazea-main-menu">
-            <div class="classy-nav-container breakpoint-off">
-                <div class="container">
-                    <!-- Menu -->
-                    <nav class="classy-navbar justify-content-between" id="alazeaNav">
-
-                        <!-- Nav Brand -->
-                        <a href="http://127.0.0.1:2000/" class="nav-brand" style="color:white;">Script House</a>
-
-                        <!-- Navbar Toggler -->
-                        <div class="classy-navbar-toggler">
-                            <span class="navbarToggler"><span></span><span></span><span></span></span>
-                        </div>
-
-                        <!-- Menu -->
-                        <div class="classy-menu">
-
-                            <!-- Close Button -->
-                            <div class="classycloseIcon">
-                                <div class="cross-wrap"><span class="top"></span><span class="bottom"></span></div>
-                            </div>
-
-                            <!-- Navbar Start -->
-                            <div class="classynav">
-                                <ul>
-                                    <li><a href="http://127.0.0.1:2000/">Home</a></li>
-                                    <li><a href="http://127.0.0.1:2000/about">About</a></li>
-
-                                    <li><a href="http://127.0.0.1:2000/nubia">Nubia Design</a></li>
-                                    <li><a href="http://127.0.0.1:2000/portfolio">Portfolio</a></li>
-                                    <li><a href="http://127.0.0.1:2000/contact">Contact</a></li>
-                                </ul>
-
-                                <!-- Search Icon -->
-                                <div id="searchIcon">
-                                    <i class="fa fa-search" aria-hidden="true"></i>
-                                </div>
-
-                            </div>
-                            <!-- Navbar End -->
-                        </div>
-                    </nav>
-
-                    <!-- Search Form -->
-                    <div class="search-form">
-                        <form action="#" method="get">
-                            <input type="search" name="search" id="search" placeholder="Type keywords &amp; press enter...">
-                            <button type="submit" class="d-none"></button>
-                        </form>
-                        <!-- Close Icon -->
-                        <div class="closeIcon"><i class="fa fa-times" aria-hidden="true"></i></div>
+    <header class="header_area">
+        <div class="top_menu">
+            <div class="container">
+                <div class="top_inner">
+                    <div class="float-left">
+                        <a href="#">Visit Us</a>
+                        <a href="#">Online Support</a>
+                    </div>
+                    <div class="float-right">
+                        <ul class="list header_socila">
+                            <li><a href="#"><i class="fa fa-facebook"></i></a></li>
+                            <li><a href="#"><i class="fa fa-twitter"></i></a></li>
+                            <li><a href="#"><i class="fa fa-dribbble"></i></a></li>
+                            <li><a href="#"><i class="fa fa-behance"></i></a></li>
+                        </ul>
                     </div>
                 </div>
             </div>
         </div>
-    </header>
+     <div class="main_menu" id="mainNav">
+         <nav class="navbar navbar-expand-lg navbar-light">
+             <div class="container">
+                 <!-- Brand and toggle get grouped for better mobile display -->
+                 <a class="navbar-brand logo_h" href="http://127.0.0.1:2000/"><img src="http://127.0.0.1:2000/img/core-img/sublogo.png" style="width: 150px" alt=""><img src="http://127.0.0.1:2000/img/core-img/sublogo.png" style="width: 150px; height:70px;" alt=""></a>
+                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                     <span class="icon-bar"></span>
+                 </button>
+                 <!-- Collect the nav links, forms, and other content for toggling -->
+                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                     <ul class="nav navbar-nav menu_nav ml-auto">
+                         <li class="nav-item active"><a class="nav-link" href="http://127.0.0.1:2000/">Home</a></li> 
+                         <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:2000/about/">About</a></li> 
+                         <li class="nav-item submenu dropdown">
+                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Projects</a>
+                             <ul class="dropdown-menu">
+                                 <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:2000/portfolio/">Websites</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:2000/">Android</a></li>
+                             </ul>
+                         </li> 
+                         <li class="nav-item submenu dropdown">
+                             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Nubia</a>
+                             <ul class="dropdown-menu">
+                                 <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:2000/nubia/">About Nubia</a></li>
+                                 <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:2000/nubia/products/">Nubia Products</a></li>
+                             </ul>
+                         </li> 
+                         <li class="nav-item"><a class="nav-link" href="http://127.0.0.1:2000/contact/">Contact</a></li>
+                     </ul>
+                 </div> 
+             </div>
+         </nav>
+     </div>
+ </header>
