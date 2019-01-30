@@ -1,0 +1,64 @@
+<% include partials/header %>
+
+<section class="banner_area">
+  <div class="banner_inner d-flex align-items-center">
+    <div
+      class="overlay bg-parallax"
+      style="transform: translateY(-0.896462px);"
+    ></div>
+    <div class="container"><div class="banner_content text-center"></div></div>
+  </div>
+</section>
+
+<!--  -->
+<div class="col-12 new-ques-form">
+  <form
+    action="http://127.0.0.1:2000/blog/questions/question-id="
+    method="post"
+  >
+    <h3>New Question</h3>
+    <span>Question Title</span>
+    <input
+      type="text"
+      name=""
+      id="ques-title"
+      placeholder="What's your question? be specific."
+      required
+    />
+    <p class="title" id="title"></p>
+    <span>Body</span>
+    <textarea
+      name=""
+      id="ques-body"
+      rows="3"
+      placeholder="Question Body"
+      required
+    ></textarea>
+    <p class="ques-body"></p>
+    <span>Tags</span>
+    <input
+      type="text"
+      name=""
+      id=""
+      placeholder="e.g. (how to setip my linux server)"
+      required
+    />
+
+    <button>Ask Now</button>
+  </form>
+</div>
+
+<% include partials/footer %>
+
+<script>
+  // event function that listen for inputs keyup
+  let event = function(input, output) {
+    return input.on("keyup", function() {
+      output.textContent = input.val();
+    });
+  };
+
+  // apply the event for each element
+  new event((quesTitle = $("#ques-title")), (title = $("#title")[0]));
+  new event((quesbody = $("#ques-body")), (quesBody = $(".ques-body")[0]));
+</script>

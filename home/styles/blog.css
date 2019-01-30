@@ -1,0 +1,181 @@
+.post_question {
+  width: 60%;
+  height: 50px;
+  margin-left: 20%;
+}
+
+.post_question form {
+  display: flex;
+}
+
+#search_now,
+#search_now:focus {
+  width: 100%;
+  height: 50px;
+  padding-left: 20px;
+  padding-right: 20px;
+  outline: none;
+  border-radius: 6px;
+  border: 2px solid #445a52;
+  background-color: transparent;
+  color: gray;
+  font-size: 19px;
+}
+
+.show_qustions {
+  overflow: hidden;
+  position: relative;
+  padding-top: 4%;
+  margin-bottom: 4%;
+}
+
+.question_wrapper {
+  padding-bottom: 15px;
+  width: 100%;
+  position: relative;
+  margin: 20px 0px;
+  display: flex;
+  border-bottom: 1px solid rgb(212, 210, 210);
+}
+
+.question_details {
+  display: flex;
+}
+
+.question_details div {
+  text-align: center;
+  width: 60px;
+  height: 60px;
+  margin: 0 3px;
+  position: relative;
+  text-align: center;
+  padding-top: 10px;
+  font-size: 19px;
+  cursor: pointer;
+}
+.question_details div p {
+  margin-top: 0px;
+  font-size: 12px;
+}
+.question_details .answers {
+  border: 1px solid greenyellow;
+  border-radius: 5px;
+  color: rgb(101, 177, 133);
+}
+
+.question_title .title {
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(101, 177, 133);
+  line-height: 25px;
+}
+.question_title .tags {
+  position: absolute;
+  width: auto;
+  height: auto;
+  bottom: 5px;
+  left: 30%;
+}
+.question_title .tags span {
+  padding: 5px 5px;
+  background: #dcdddd;
+  border-radius: 5px;
+  margin-left: 2px;
+  font-size: 12px;
+  cursor: pointer;
+  transition: all ease 400ms;
+}
+.question_title .tags span:hover {
+  color: rgb(89, 185, 94);
+}
+
+.tool-tip {
+  float: right;
+  text-align: center;
+  position: relative;
+  padding: 10px 10px 20px 10px;
+}
+
+.tool-tip .new-quez {
+  display: block;
+  width: 50%;
+  padding: 5px 5px;
+  background: #70c745;
+  margin-left: 25%;
+  margin-top: 5%;
+  cursor: pointer;
+  color: #dcdddd;
+  font-size: 17px;
+  font-weight: 500;
+}
+
+/**********new question form*********/
+.new-ques-form {
+  width: 50%;
+  height: 400px;
+  padding: 20px 20px 20px 20px;
+  position: relative;
+  z-index: 20;
+  margin: -15% 25% 10%;
+}
+
+.new-ques-form form {
+  position: relative;
+  width: 96%;
+  padding: 20px 20px 20px 20px;
+  background: #ffffff;
+  margin-left: 2%;
+}
+
+.new-ques-form form input,
+.new-ques-form form textarea,
+.new-ques-form form input:focus,
+.new-ques-form form textarea:focus {
+  width: 90%;
+  border: 1px solid #54bb59;
+  margin: 10px 5%;
+  padding: 4px 10px 4px 10px;
+  border-radius: 4px;
+  resize: none;
+  outline: none;
+}
+.new-ques-form form span,
+.new-ques-form form p {
+  margin-left: 5%;
+}
+.new-ques-form form button,
+.new-ques-form form button:focus {
+  width: 35%;
+  font-size: 18px;
+  margin: 5% 32.5%;
+  border: 2px solid #62d368;
+  background: transparent;
+  border-radius: 5px;
+  cursor: pointer;
+  color: gray;
+  padding: 7px;
+  transition: all ease 500ms;
+  outline: none;
+}
+.new-ques-form form button:hover {
+  background: #62d368;
+  color: white;
+}
+
+.new-ques-form form .title {
+  position: relative;
+  font-size: 18px;
+  font-weight: 500;
+  color: rgb(101, 177, 133);
+  line-height: 25px;
+  width: 90%;
+}
+.ques-body {
+  position: relative;
+  font-size: 17px;
+  font-weight: 500;
+  color: rgb(33, 36, 34);
+  line-height: 25px;
+  width: 90%;
+}
