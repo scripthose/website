@@ -68,7 +68,7 @@ router.get("/nubia/products/product_number=:id", (req, res) => {
 
 // new blog question
 
-router.post("/blog/questions/question-id=", (req, res) => {
+router.post("/blog/question/", (req, res) => {
   res.render("question", { title: "Forum" });
 });
 
