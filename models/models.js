@@ -56,40 +56,6 @@ const scriptor = mongoose.model('scriptors', scriptorSchema);
 const nubiaProduct = mongoose.model('nubiaProducts', nubiaProductSchema);
 
 
-// let prod = {
-// 	prodName: 'String',
-// 	prodPic: 'http://localhost:2000/img/bg-img/46.png',
-// 	prodPrice: 12,
-// 	prodDesc: 'String',
-// 	prodLove: 1
-// }
-
-// let q = {
-// 	title: 'Question',
-// 	body: 'test data',
-// 	tags: [],
-// 	answers: [],
-// 	views: 1
-// }
-
-// let ans = {
-// 	question: null,
-// 	body: 'Answer',
-// 	votes: {total: 12, up: 9, down: 3},
-// 	isCorrect: true,
-// 	views: 20
-// }
-
-// let t = {
-// 	title: "test",
-// 	questions: []
-// }
-
-// new nubiaProduct(prod).save().then((data) => console.log(data));
-// new question(q).save().then((data) => console.log(data));
-// new answer(ans).save().then((data) => console.log(data));
-// new tag(t).save().then((data) => console.log(data));
-
 // exporting the models outside of the 
 module.exports = {
 	scriptor,
