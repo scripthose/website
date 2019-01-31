@@ -7,7 +7,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 
 // app modules
-const router = require('./routing/route');
+const router = require('./routes');
+const blogRoutes = require('./routes/blog');
 const keys = require('./authentication/keys');
 const SocketServer = require('./socketServer');
 
@@ -17,11 +18,14 @@ const server = require('http').createServer(app);
 const io = require('socket.io').listen(server);
 
 
-app.use(router.getPages); // use the external router file 
 app.use(bodyParser.json()); // use bodyParser to parse json
 app.use(bodyParser.urlencoded({extended: false})); // use bodyParser to parse req body
 app.use(express.static(path.join(__dirname, 'home'))); // use a static resources
- 
+
+// routes
+app.use('/', router); // index routes
+app.use('/blog', blogRoutes); // blog routes
+
 app.set('view engine', 'ejs'); // setup views engine
 app.set('views', path.join(__dirname, 'home')) // setup views dir
 

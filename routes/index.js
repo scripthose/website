@@ -2,11 +2,11 @@ const models = require("../models/models");
 
 const router = require("express").Router();
 
-router.get("/", (req, res) => {
+router.get("", (req, res) => {
   res.render("index", { title: "" });
 });
 
-router.get("/home", (req, res) => {
+router.get("home", (req, res) => {
   res.render("index", { title: "Home" });
 });
 
@@ -28,20 +28,6 @@ router.get("/cart", (req, res) => {
 
 router.get("/portfolio/project", (req, res) => {
   res.render("single-portfolio", { title: "Protofolio" });
-});
-
-router.get("/blog", (req, res) => {
-  models.question.find({}).populate(['answers', 'tags']).exec((err, questions) => {
-    if (err) {
-      console.error(err);
-      res.status(500).send('500: Server Error');
-    }
-    res.render("blog", { title: "Blog", questions });
-  });
-});
-
-router.get("/blog/questions/new/", (req, res) => {
-  res.render("question.blog.ejs", { title: "new question" });
 });
 
 router.get("/nubia", (req, res) => {
@@ -72,9 +58,5 @@ router.get("/nubia/products/product_number=:id", (req, res) => {
   });
 });
 
-// new blog question
-router.post("/blog/questions/", (req, res) => {
-  res.render("question", { title: "Forum" });
-});
 
-module.exports.getPages = router;
+module.exports = router;
