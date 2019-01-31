@@ -2,6 +2,27 @@ const mongoose = require('mongoose');
 
 const Schema = mongoose.Schema;
 
+const Question = new Schema({
+	title: String,
+	body: String,
+	tags: [{type: Schema.Types.ObjectId, ref:'tag'}],
+	answers: [{type: Schema.Types.ObjectId, ref: 'answer'}],
+	views: Number
+});
+
+const Tag = new Schema({
+	title: String,
+	questions: [{type: Schema.Types.ObjectId, ref: 'question'}]
+});
+
+const Answer = new Schema({
+	question: {type: Schema.Types.ObjectId, ref: 'question'},
+	body: String,
+	votes: {total: Number, up: Number, down: Number},
+	isCorrect: Boolean,
+	views: Number
+});
+
 // this model is made for script house users
 const scriptorSchema = new Schema({
 	scriptorName: String,
@@ -28,6 +49,9 @@ const nubiaProductSchema = new Schema({
 })
 
 // create the schema on the database
+const tag = mongoose.model('tag', Tag);
+const answer = mongoose.model('answer', Answer);
+const question = mongoose.model('question', Question);
 const scriptor = mongoose.model('scriptor', scriptorSchema);
 const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
 
@@ -59,7 +83,10 @@ const nubiaProduct = mongoose.model('nubiaProduct', nubiaProductSchema);
 // exporting the models outside of the 
 module.exports = {
 	scriptor,
-	nubiaProduct
+	nubiaProduct,
+	question,
+	answer,
+	tag
 }
 
 
