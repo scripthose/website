@@ -34,79 +34,25 @@
       <div class="col-12" style="background:#ebebeb; margin-bottom:20px;">
         <h3>Top Questions</h3>
         <div class="show_qustions col-8" style="float:left">
-          <div class="question_wrapper">
-            <div class="question_details">
-              <div class="votes">
-                <span>0</span>
-                <p>Votes</p>
-              </div>
-              <div class="answers">
-                <span>4</span>
-                <p>Answers</p>
-              </div>
-              <div class="views">
-                <span>1</span>
-                <p>Views</p>
-              </div>
-            </div>
-            <div class="question_title">
-              <a href="#"
-                ><p class="title">
-                  How to install node.js fastly on my MAC computer, I've tried
-                  many ways but not working
-                </p></a
-              >
-              <div class="tags">
-                <span>node.js</span><span>Programming</span
-                ><span>Web Application</span><span>JavaScript</span>
-              </div>
-            </div>
-          </div>
-          <div class="question_wrapper">
-            <div class="question_details">
-              <div class="votes">
-                <span>0</span>
-                <p>Votes</p>
-              </div>
-              <div class="answers">
-                <span>4</span>
-                <p>Answers</p>
-              </div>
-              <div class="views">
-                <span>1</span>
-                <p>Views</p>
-              </div>
-            </div>
-            <div class="question_title">
-              <a href="#"
-                ><p class="title">
-                  How to install node.js on my MAC pc, I've tried many ways but
-                  not working
-                </p></a
-              >
-              <div class="tags">
-                <span>node.js</span><span>Programming</span
-                ><span>Web Application</span><span>Website</span
-                ><span>JavaScript</span>
-              </div>
-            </div>
-          </div>
+          <% for (let q of questions) { %>
+            <% include partials/question %>
+          <% } %>
         </div>
         <div class="col-4 tool-tip">
           <h4>Ask a Question</h4>
           <a href="http://127.0.0.1:2000/blog/questions/new/"
-            ><span class="new-quez">New Question</span></a
-          >
-          <a href=""
-            ><span class="new-quez" style="background:#ea243b"
-              >Sign in with Google+</span
-            ></a
-          >
-          <a href=""
-            ><span class="new-quez" style="background:#475ac7"
-              >Sign in with Facebook</span
-            ></a
-          >
+            ><span class="new-quez">New Question</span>
+          </a>
+          <a href="">
+            <span class="new-quez" style="background:#ea243b">
+              Sign in with Google+
+            </span>
+          </a>
+          <a href="">
+            <span class="new-quez" style="background:#475ac7">
+              Sign in with Facebook
+            </span>
+          </a>
           <hr />
           <p>Hot Question</p>
         </div>

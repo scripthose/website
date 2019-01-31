@@ -1,4 +1,4 @@
-const models = require("../models/modelsActions");
+const models = require("../models/models");
 
 const router = require("express").Router();
 
@@ -30,8 +30,14 @@ router.get("/portfolio/project", (req, res) => {
   res.render("single-portfolio", { title: "Protofolio" });
 });
 
-router.get("/blog", (req, res, next) => {
-  res.render("blog", { title: "Blog" });
+router.get("/blog", (req, res) => {
+  models.question.find({}).populate(['answers', 'tags']).exec((err, questions) => {
+    if (err) {
+      console.error(err);
+      res.status(500).send('500: Server Error');
+    }
+    res.render("blog", { title: "Blog", questions });
+  });
 });
 
 router.get("/blog/questions/new/", (req, res) => {
@@ -54,7 +60,7 @@ router.get("/checkout", (req, res) => {
 router.get("/nubia/products/product_number=:id", (req, res) => {
   global.shopIdUrl = req.params.id;
 
-  models.findOne('nubiaProduct', { _id: shopIdUrl }, function(err, data) {
+  models.nubiaProduct.findOne({ _id: shopIdUrl }, function(err, data) {
     if (err) return console.error(err);
     res.render("shop", {
       title: "Shop",
@@ -67,8 +73,7 @@ router.get("/nubia/products/product_number=:id", (req, res) => {
 });
 
 // new blog question
-
-router.post("/blog/question/", (req, res) => {
+router.post("/blog/questions/", (req, res) => {
   res.render("question", { title: "Forum" });
 });
 
