@@ -1,4 +1,4 @@
-const models = require("../models/models");
+const models = require("../models/modelsActions");
 
 const router = require("express").Router();
 
@@ -54,7 +54,7 @@ router.get("/checkout", (req, res) => {
 router.get("/nubia/products/product_number=:id", (req, res) => {
   global.shopIdUrl = req.params.id;
 
-  models.nubiaProduct.findOne({ _id: shopIdUrl }, function(err, data) {
+  models.findOne('nubiaProduct', { _id: shopIdUrl }, function(err, data) {
     if (err) return console.error(err);
     res.render("shop", {
       title: "Shop",
