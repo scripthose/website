@@ -5,3 +5,5 @@ node_modules/*
 bin/node_modules/*
 
 home/js/ejs.min.js
+
+loadTestData.js
