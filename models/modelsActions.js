@@ -1,19 +1,40 @@
 const models  = require('./models');
 
-function findOne(model, constraints, callback) {
-  models[model].findOne(constraints, callback);
+function handleError(func) {
+  return function(model, conditions, callback) {
+    return new Promise((resolve, reject) => {
+      if (callback) {
+        resolve = callback;
+        reject = callback;
+      }
+      try {
+        func(model, conditions, resolve);
+      } catch (e) {
+        reject(e)
+      } 
+    })
+  }
 }
 
-function find(model, constraints, callback) {
-  models[model].find(constraints, callback);
+function findOne(model, conditions, callback) {
+  models[model].findOne(conditions, callback);
 }
 
-function deleteOne(model, constraints, callback) {
-  models[model].deleteOne(constraints, callback);
+function find(model, conditions, callback) {
+  models[model].find(conditions, callback);
 }
 
-function deleteMany(model, constraints, callback) {
-  models[model].deleteMany(constraints, callback);
+function deleteOne(model, conditions, callback) {
+  models[model].deleteOne(conditions, callback);
 }
 
-module.exports = {find, findOne, deleteOne, deleteMany};
+function deleteMany(model, conditions, callback) {
+  models[model].deleteMany(conditions, callback);
+}
+
+module.exports = {
+  find: handleError(find),
+  findOne: handleError(findOne),
+  deleteOne: handleError(deleteOne),
+  deleteMany: handleError(deleteMany)
+};
