@@ -8,7 +8,7 @@
         <div class="overlay bg-parallax" data-stellar-ratio="0.9" data-stellar-vertical-offset="0" data-background="" style="transform: translateY(-0.896462px);"></div>
         <div class="container">
             <div class="banner_content text-center">
-                <h2>Shop</h2>
+                <h2><%= data.prodName %></h2>
             </div>
         </div>
     </div>
@@ -27,18 +27,18 @@
                         <div id="product_details_slider" class="carousel slide" data-ride="carousel">
                             <div class="carousel-inner">
                                 <div class="carousel-item active">
-                                    <a class="product-img" href="<%= prodPic %>" title="Product Image">
-                                    <img class="d-block w-100" src="<%= prodPic %>" alt="1">
+                                    <a class="product-img" href="<%= data.prodPic %>" title="Product Image">
+                                    <img class="d-block w-100" src="<%= data.prodPic %>" alt="1">
                                 </a>
                                 </div>
                                 <div class="carousel-item">
-                                    <a class="product-img" href="<%= prodPic %>" title="Product Image">
-                                    <img class="d-block w-100" src="<%= prodPic %>" alt="1">
+                                    <a class="product-img" href="<%= data.prodPic %>" title="Product Image">
+                                    <img class="d-block w-100" src="<%= data.prodPic %>" alt="1">
                                 </a>
                                 </div>
                                 <div class="carousel-item">
-                                    <a class="product-img" href="<%= prodPic %>" title="Product Image">
-                                    <img class="d-block w-100" src="<%= prodPic %>" alt="1">
+                                    <a class="product-img" href="<%= data.prodPic %>" title="Product Image">
+                                    <img class="d-block w-100" src="<%= data.prodPic %>" alt="1">
                                 </a>
                                 </div>
                             </div>
@@ -56,21 +56,21 @@
 
                 <div class="col-12 col-md-6">
                     <div class="single_product_desc">
-                        <h4 class="title"><%= prodName %></h4>
-                        <h4 class="price">$<%= prodPrice %></h4>
+                        <h4 class="title"><%= data.prodName %></h4>
+                        <h4 class="price">$<%= data.prodPrice %></h4>
                         <div class="short_overview">
-                            <p><%= prodDesc %></p>
+                            <p><%= data.prodDesc %></p>
                         </div>
 
                         <div class="cart--area d-flex flex-wrap align-items-center">
                             <!-- Add to Cart Form -->
-                            <form class="cart clearfix d-flex align-items-center" method="get" action="http://127.0.0.1:2000/cart/">
+                            <form class="cart clearfix d-flex align-items-center" method="get" action="#">
                                 <div class="quantity">
                                     <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
                                     <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
                                     <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
                                 </div>
-                                <button type="submit" name="addtocart" value="5" class="btn alazea-btn ml-15">Add to cart</button>
+                                <button type="submit" name="addtocart" value="1" class="btn alazea-btn ml-15">Add to cart</button>
                             </form>
                             <!-- Wishlist & Compare -->
                             <div class="wishlist-compare d-flex flex-wrap align-items-center">
@@ -80,13 +80,13 @@
                         </div>
 
                         <div class="products--meta">
-                            <p><span>SKU:</span> <span>CT201807</span></p>
-                            <p><span>Category:</span> <span>Logo </span></p>
-                            <p><span>Tags:</span> <span>Design, Mark, Logos </span></p>
+                            <p><span>SKU:</span> <span>NON EXISTED</span></p>
+                            <p><span>Category:</span> <span><%= data.prodCategory %> </span></p>
+                            <p><span>Tags:</span> <span><%= data.prodTags %></span></p>
                             <p>
                                 <span>Share on:</span>
                                 <span>
-                                <a href="#"><i class="fa fa-facebook"></i></a>
+                                <a href=""><i class="fa fa-facebook"></i></a>
                                 <a href="#"><i class="fa fa-twitter"></i></a>
                                 <a href="#"><i class="fa fa-pinterest"></i></a>
                                 <a href="#"><i class="fa fa-google-plus"></i></a>
@@ -120,7 +120,7 @@
                     <div class="tab-content">
                         <div role="tabpanel" class="tab-pane fade show active" id="description">
                             <div class="description_area">
-                                <p><%= prodDesc %></p>
+                                <p><%= data.prodDesc %></p>
 
                             </div>
                         </div>
@@ -202,13 +202,14 @@
                                                     <input type="radio" name="star" class="star-5" id="star-5">
                                                     <label class="star-5" for="star-5">5</label>
                                                     <span></span>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Nickname</label>
-                                                <input type="email" class="form-control" id="name" placeholder="Nazrul">
+                                                <input type="email" class="form-control" id="name" placeholder="Your Nickname">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">

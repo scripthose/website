@@ -1,4 +1,4 @@
-const models  = require('./models');
+const models = require("./models");
 
 function handleError(func) {
   return function(model, conditions, callback) {
@@ -10,10 +10,10 @@ function handleError(func) {
       try {
         func(model, conditions, resolve);
       } catch (e) {
-        reject(e)
-      } 
-    })
-  }
+        reject(e);
+      }
+    });
+  };
 }
 
 function findOne(model, conditions, callback) {

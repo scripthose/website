@@ -1,7 +1,7 @@
 <div class="question_wrapper">
   <div class="question_details">
     <div class="votes">
-      <span><%= q.votes %></span>
+      <span>0<%= q.votes %></span>
       <p>Votes</p>
     </div>
     <div class="answers">
@@ -9,19 +9,20 @@
       <p>Answers</p>
     </div>
     <div class="views">
-      <span><%= q.views %></span>
+      <span>0<%= q.views %></span>
       <p>Views</p>
     </div>
   </div>
   <div class="question_title">
-    <a style="display: block"  href="http://localhost:2000/blog/questions/<%=q._id %>">
+    <a
+      style="display: block"
+      href="http://localhost:2000/blog/questions/<%=q._id %>"
+    >
       <h4 class="title"><%= q.title %></h4>
       <p><%= q.body %></p>
     </a>
     <div class="tags">
-      <% for (let tag of q.tags) { %>
-        <span><%= tag.title %></span>
-      <% } %>
+      <% for (let tag of q.tags) { %> <span><%= tag.title %></span> <% } %>
     </div>
   </div>
 </div>

@@ -1,22 +1,85 @@
 .main_btn {
-    width: 180px;
-    height:40px;
-    display: inline-block;
-    background: #70c745;
-    padding: 0px 35px;
-    color: #fff;
-    font-family: "Heebo", sans-serif;
-    font-size: 16px;
-    line-height: 38px;
-    border: 1px solid #47be75;
-    border-radius: 0px;
-    text-align: center;
-    cursor: pointer;
-    transition: all 300ms linear 0s;
+  width: 180px;
+  height: 40px;
+  display: inline-block;
+  background: #70c745;
+  padding: 0px 35px;
+  color: #fff;
+  font-family: "Heebo", sans-serif;
+  font-size: 16px;
+  line-height: 38px;
+  border: 1px solid #47be75;
+  border-radius: 0px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 300ms linear 0s;
 }
 
 .main_btn:hover {
-    background: transparent;
-    color: #47be75; 
-    font-size: 16px;
+  background: transparent;
+  color: #47be75;
+  font-size: 16px;
+}
+
+.script-forum-area {
+  background: url(http://127.1:2000/img/bg-img/blog.jpg);
+  background-position: center;
+  background-size: cover;
+  margin-bottom: 5%;
+  height: auto;
+  padding: 4% 7%;
+  position: relative;
+}
+.forum-section {
+  background-image: linear-gradient(
+    to right,
+    rgba(110, 114, 110, 0.123),
+    rgba(33, 36, 34, 0.623)
+  );
+  padding: 6%;
+}
+
+.script-forum-area .forum-section,
+.script-forum-area .forum-section p {
+  width: 70%;
+  height: auto;
+  padding-top: 4%;
+  padding-left: 2%;
+  color: #41a041;
+  position: relative;
+  font-size: 14px;
+}
+.script-forum-area .forum-section h1 {
+  color: rgb(224, 224, 224);
+  font-family: "Times New Roman", Times, serif;
+  font-weight: 500;
+  font-size: 2.4em;
+}
+.script-forum-area .forum-section hr {
+  height: 50px;
+  width: 80%;
+  size: 50px;
+}
+
+.script-forum-area .forum-section span {
+  position: absolute;
+  width: 90%;
+  height: 4px;
+  background: #6f7a73;
+}
+
+.forum-sub {
+  float: right;
+  width: auto;
+}
+
+.forum-sub #forum-btn {
+  background: transparent;
+  color: #3c914e;
+}
+
+.forum-sub #forum-btn:hover {
+  background: #41a041;
+  color: #fff;
+  border: 1px solid #41a041;
 }
