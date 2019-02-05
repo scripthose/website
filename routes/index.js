@@ -18,10 +18,6 @@ router.get("/contact", (req, res) => {
   res.render("contact", { title: "Contact" });
 });
 
-router.get("/portfolio", (req, res) => {
-  res.render("portfolio", { title: "Protfolio" });
-});
-
 router.get("/cart", (req, res) => {
   res.render("cart", { title: "Cart" });
 });

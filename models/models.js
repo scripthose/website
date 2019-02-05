@@ -48,9 +48,19 @@ const nubiaProductSchema = new Schema({
   prodTags: { type: String }
 });
 
+// portfolio templates schema
+const Template = new Schema({
+  projectName: String,
+  projectDescription: String,
+  projectCategory: String,
+  projectImage: String,
+  projectLink: String
+});
+
 // create the schema on the database
 const tag = mongoose.model("tags", Tag);
 const answer = mongoose.model("answers", Answer);
+const template = mongoose.model("answers", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
 const nubiaProduct = mongoose.model("nubiaProducts", nubiaProductSchema);
@@ -60,6 +70,7 @@ module.exports = {
   scriptor,
   nubiaProduct,
   question,
+  template,
   answer,
   tag
 };
