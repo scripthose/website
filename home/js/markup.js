@@ -76,15 +76,15 @@ app.markups = {
   prodMarkup: function(prod) {
     return `
             <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-product-area mb-50>
+                <div class="single-product-area mb-50">
                     <div class="product-img">
                         <img src="${prod.prodPic}" alt=""></a>
                         <div class="product-meta d-flex">
-                            <a href="#" class="wishlist-btn">
+                            <a href="#" class="wishlist-btn" style="visibility: hidden;">
                                 <i class="icon_heart_alt"></i>
                             </a>
                             <a href="#" class="add-to-cart-btn">Add to cart</a>
-                            <a href="#" class="compare-btn" onclick="alert('hello world')">
+                            <a href="#" class="compare-btn" style="visibility: hidden;>
                                 <i class="arrow_left-right_alt"></i>
                             </a>
                         </div>

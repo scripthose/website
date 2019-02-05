@@ -10,7 +10,7 @@ router.get("/", (req, res) => {
 router.get("/products", (req, res, next) => {
   models.nubiaProduct
     .find()
-    .limit(3)
+    .limit(4)
     .sort({ $natural: -1 })
     .exec((err, bestSells) => {
       if (err) return console.error(err);
@@ -20,6 +20,7 @@ router.get("/products", (req, res, next) => {
         bestSells: bestSells
       });
     });
+  next();
 });
 
 // getting id param and load the data on the blog post
