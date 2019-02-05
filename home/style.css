@@ -1679,7 +1679,7 @@ img {
 }
 
 /* :: 11.0 Testimonial Area CSS */
-/* .testimonials-slides {
+.testimonials-slides {
   position: relative;
   z-index: 1; }
   .testimonials-slides .owl-dots {
@@ -1747,7 +1747,7 @@ img {
     margin-bottom: 0; }
   .single-testimonial-slide .testimonial-content .testimonial-author-info p {
     margin-bottom: 0;
-    color: #70c745; } */
+    color: #70c745; }
 
 /* :: 12.0 About Us Area CSS */
 /* .about-us-area {

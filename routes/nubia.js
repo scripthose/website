@@ -3,7 +3,18 @@ const models = require("../models/models");
 const router = require("express").Router();
 
 router.get("/", (req, res) => {
-  res.render("nubia-team", { title: "Nubia Team" });
+  models.nubiaProduct
+    .find()
+    .limit(4)
+    .sort({ $natural: -1 })
+    .exec((err, bestSells) => {
+      if (err) return console.error(err);
+      // console.log(bestSells[0].prodName);
+      res.render("nubia-team", {
+        title: "Nubia Team",
+        bestSells: bestSells
+      });
+    });
 });
 
 // send the products limit show the best sells
@@ -20,7 +31,6 @@ router.get("/products", (req, res, next) => {
         bestSells: bestSells
       });
     });
-  next();
 });
 
 // getting id param and load the data on the blog post

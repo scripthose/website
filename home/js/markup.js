@@ -78,7 +78,7 @@ app.markups = {
             <div class="col-12 col-sm-6 col-lg-4">
                 <div class="single-product-area mb-50">
                     <div class="product-img">
-                        <img src="${prod.prodPic}" alt=""></a>
+                        <a href="#"><img src="${prod.prodPic}" alt=""></a>
                         <div class="product-meta d-flex">
                             <a href="#" class="wishlist-btn" style="visibility: hidden;">
                                 <i class="icon_heart_alt"></i>
@@ -101,33 +101,34 @@ app.markups = {
             </div>`;
   },
 
-  sellProdMarkup: function(prod) {
-    return `
-            <div class="col-12 col-sm-6 col-lg-4">
-                <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="300ms">
-                    <div class="product-img">
-                        <img src="${prod.prodPic}" alt=""></a>
-                        <div class="product-meta d-flex">
-                            <a href="#" class="wishlist-btn">
-                                <i class="icon_heart_alt"></i>
-                            </a>
-                            <a href="#" class="add-to-cart-btn">Add to cart</a>
-                            <a href="#" class="compare-btn" onclick="alert('hello world')">
-                                <i class="arrow_left-right_alt"></i>
-                            </a>
-                        </div>
-                    </div>
-                    <div class="product-info mt-15 text-center">
-                        <a href="http://127.0.0.1:2000/nubia/products/product_number=${
-                          prod.prodId
-                        }">
-                            <p>${prod.prodName}</p>
-                        </a>
-                        <h6>$${prod.prodPrice}</h6>
-                    </div>
-                </div>
-            </div>`;
-  },
+  //   sellProdMarkup: function(prod) {
+  //     return `
+  //             <div class="col-12 col-sm-6 col-lg-4">
+  //                 <div class="single-product-area mb-50 wow fadeInUp" data-wow-delay="300ms">
+  //                     <div class="product-img">
+  //                         <img src="${prod.prodPic}" alt=""></a>
+  //                         <div class="product-meta d-flex">
+  //                             <a href="#" class="wishlist-btn">
+  //                                 <i class="icon_heart_alt"></i>
+  //                             </a>
+  //                             <a href="#" class="add-to-cart-btn">Add to cart</a>
+  //                             <a href="#" class="compare-btn" onclick="alert('hello world')">
+  //                                 <i class="arrow_left-right_alt"></i>
+  //                             </a>
+  //                         </div>
+  //                     </div>
+  //                     <div class="product-info mt-15 text-center">
+  //                         <a href="http://127.0.0.1:2000/nubia/products/product_number=${
+  //                           prod.prodId
+  //                         }">
+  //                             <p>${prod.prodName}</p>
+  //                         </a>
+  //                         <h6>$${prod.prodPrice}</h6>
+  //                     </div>
+  //                 </div>
+  //             </div>`;
+  //   },
+
   prodCount: function(prodCount) {
     return `
       <p>Showing 1-1 of ${prodCount.length} results</p>`;
