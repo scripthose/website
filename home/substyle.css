@@ -61,6 +61,8 @@ body::-webkit-scrollbar-thumb {
   width: 100%;
   border-radius: 4px;
   overflow: hidden;
+  filter: blur(1px);
+  transition: all ease 500ms;
 }
 
 .tiles article > .image img {
@@ -179,19 +181,7 @@ body:not(.is-touch) .tiles article:hover > .image {
   -webkit-transform: scale(1.1);
   -ms-transform: scale(1.1);
   transform: scale(1.1);
-}
-
-body:not(.is-touch) .tiles article:hover > .image:before {
-  opacity: 0.35;
-}
-
-body:not(.is-touch) .tiles article:hover > .image:after {
-  opacity: 0;
-}
-
-body:not(.is-touch) .tiles article:hover .content {
-  max-height: 15em;
-  opacity: 1;
+  filter: blur(0px);
 }
 
 * + .tiles {
