@@ -60,7 +60,7 @@ const Template = new Schema({
 // create the schema on the database
 const tag = mongoose.model("tags", Tag);
 const answer = mongoose.model("answers", Answer);
-const template = mongoose.model("answers", Template);
+const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
 const nubiaProduct = mongoose.model("nubiaProducts", nubiaProductSchema);

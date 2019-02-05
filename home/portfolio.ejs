@@ -33,33 +33,15 @@
     </p>
   </header>
   <section class="tiles">
+    <% callback.forEach(function(template){ %>
     <article class="style1">
       <span class="image">
-        <img src="http://127.0.0.1:2000/img/bg-img/project1.png" alt="" />
+        <img src="<%= template.projectImage %>" alt="Hello world" />
       </span>
-      <a href="http://127.0.0.1:2000/portfolio/project/"> </a>
+      <a href="http://127.0.0.1:2000/portfolio/project/<%= template._id %>">
+      </a>
     </article>
-    <!--  -->
-    <article class="style1">
-      <span class="image">
-        <img src="http://127.0.0.1:2000/img/bg-img/project2.png" alt="" />
-      </span>
-      <a href="http://127.0.0.1:2000/portfolio/project/"> </a>
-    </article>
-    <!--  -->
-    <article class="style1">
-      <span class="image">
-        <img src="http://127.0.0.1:2000/img/bg-img/project3.png" alt="" />
-      </span>
-      <a href="http://127.0.0.1:2000/portfolio/project/"> </a>
-    </article>
-    <!--  -->
-    <article class="style1">
-      <span class="image">
-        <img src="http://127.0.0.1:2000/img/bg-img/project4.png" alt="" />
-      </span>
-      <a href="http://127.0.0.1:2000/portfolio/project/"> </a>
-    </article>
+    <% }) %>
   </section>
 </div>
 

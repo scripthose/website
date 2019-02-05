@@ -22,10 +22,6 @@ router.get("/cart", (req, res) => {
   res.render("cart", { title: "Cart" });
 });
 
-router.get("/portfolio/project", (req, res) => {
-  res.render("single-portfolio", { title: "Protofolio" });
-});
-
 router.get("/checkout", (req, res) => {
   res.render("checkout", { title: "Checkout" });
 });
