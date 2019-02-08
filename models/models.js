@@ -47,6 +47,13 @@ const nubiaProductSchema = new Schema({
   prodCategory: { type: String, required: true }, // product categories
   prodTags: { type: String }
 });
+const nubiaProductCommentsSchema = new Schema({
+  commentId: String,
+  rate: { type: String, required: false },
+  name: { type: String, required: true },
+  RFR: { type: String, required: true },
+  comment: { type: String, required: true }
+});
 
 // portfolio templates schema
 const Template = new Schema({
@@ -64,11 +71,16 @@ const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
 const nubiaProduct = mongoose.model("nubiaProducts", nubiaProductSchema);
+const nubiaProdComment = mongoose.model(
+  "nubiaProdComment",
+  nubiaProductCommentsSchema
+);
 
 // exporting the models outside of the
 module.exports = {
-  scriptor,
+  nubiaProdComment,
   nubiaProduct,
+  scriptor,
   question,
   template,
   answer,

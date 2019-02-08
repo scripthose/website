@@ -113,7 +113,7 @@
                             <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional Information</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(1)</span></a>
+                            <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(<%= callback.length %>)</span></a>
                         </li>
                     </ul>
                     <!-- Tab Content -->
@@ -140,52 +140,29 @@
                             <div class="reviews_area">
                                 <ul>
                                     <li>
-                                        <div class="single_user_review mb-15">
-                                            <div class="review-rating">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>for Quality</span>
-                                            </div>
-                                            <div class="review-details">
-                                                <p>by <a href="#">Colorlib</a> on <span>12 Sep 2018</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="single_user_review mb-15">
-                                            <div class="review-rating">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>for Design</span>
-                                            </div>
-                                            <div class="review-details">
-                                                <p>by <a href="#">Colorlib</a> on <span>12 Sep 2018</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="single_user_review">
-                                            <div class="review-rating">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>for Value</span>
-                                            </div>
-                                            <div class="review-details">
-                                                <p>by <a href="#">Colorlib</a> on <span>12 Sep 2018</span></p>
-                                            </div>
-                                        </div>
+                                        <% callback.forEach((data) => { %>
+                                            <div class="single_user_review mb-15">
+                                                    <div class="review-rating">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span>for <%= data.RFR %></span>
+                                                    </div>
+                                                    <div class="review-details">
+                                                        <p>by <a href="#"><%= data.name %></a> on <span>12 Sep 2018</span></p>
+                                                    </div>
+                                                </div>
+                                        <% }) %>
+                                        
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="submit_a_review_area mt-50">
                                 <h4>Submit A Review</h4>
-                                <form action="#" method="post">
+                                <form action="/nubia/products/product_id=<%= data.id %>?<%= data.prodName.split(' ').join('-').toLowerCase() %>" method="post">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group d-flex align-items-center">
@@ -209,13 +186,13 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Nickname</label>
-                                                <input type="email" class="form-control" id="name" placeholder="Your Nickname">
+                                                <input type="email" class="form-control" name="nickname" id="name" placeholder="Your Nickname">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="options">Reason for your rating</label>
-                                                <select class="form-control" id="options">
+                                                <select class="form-control" id="options" name="RFR">
                                                         <option>Quality</option>
                                                         <option>Value</option>
                                                         <option>Design</option>
@@ -227,7 +204,7 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="comments">Comments</label>
-                                                <textarea class="form-control" id="comments" rows="5" data-max-length="150"></textarea>
+                                                <textarea class="form-control" id="comments" name="comment" rows="5" data-max-length="150"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">

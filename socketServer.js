@@ -53,7 +53,8 @@ function SocketServer(io) {
             prodName: p.prodName,
             prodPic: p.prodPic,
             prodPrice: p.prodPrice,
-            prodDesc: p.prodDesc
+            prodDesc: p.prodDesc,
+            prodCategory: p.prodCategory
           });
         });
         socket.emit("getProdLength", prod);
