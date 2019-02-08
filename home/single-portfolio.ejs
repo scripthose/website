@@ -28,8 +28,8 @@
       <div class="col-12">
         <!-- Section Heading -->
         <div class="section-heading text-center">
-          <h2>Project Title's Here</h2>
-          <p>Design &amp; constructed by Script House.</p>
+          <h2><%= callback.projectName %></h2>
+          <p><%= callback.projectCategory %></p>
         </div>
       </div>
     </div>
@@ -39,7 +39,15 @@
       <img src="<%= callback.projectImage %>" alt="" />
     </div>
   </div>
-  <div class="tooltips"></div>
+  <div class="tooltips">
+    <span><%= callback.projectDescription %></span>
+  </div>
+  <div class="links">
+    <a href="<%= callback.projectImage %>" download>
+      <span>Download For Free</span></a
+    >
+    <a href=""> <span>Contact Us</span></a>
+  </div>
 </section>
 <!-- ##### Portfolio Detaila Area End ##### -->
 

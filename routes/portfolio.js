@@ -18,10 +18,10 @@ router.get("/portfolio/project/:id", (req, res) => {
 });
 
 // new models.template({
-//   projectName: "New Template",
-//   projectDescription: "New Template",
+//   projectName: "Testing Template",
+//   projectDescription: "This template is just for testing ",
 //   projectCategory: "Portfolio",
-//   projectImage: "http://127.0.0.1:2000/img/bg-img/project4.png",
+//   projectImage: "http://127.0.0.1:2000/img/bg-img/project2.png",
 //   projectLink: "Download link"
 // })
 //   .save()
