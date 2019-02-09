@@ -10,6 +10,7 @@ const bodyParser = require("body-parser");
 const router = require("./routes");
 const nubiaRoute = require("./routes/nubia");
 const blogRoutes = require("./routes/blog");
+const payment = require("./routes/payment");
 const portfolioRoutes = require("./routes/portfolio");
 const keys = require("./authentication/keys");
 const SocketServer = require("./socketServer");
@@ -26,6 +27,7 @@ app.use(express.static(path.join(__dirname, "home"))); // use a static resources
 // routes
 app.use("/", router); // index routes
 app.use("/", portfolioRoutes); // blog routes
+app.use(payment); // blog routes
 app.use("/blog", blogRoutes); // blog routes
 app.use("/nubia", nubiaRoute); // blog routes
 
