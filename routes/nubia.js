@@ -47,12 +47,15 @@ router.get("/products/product_id=:id", (req, res) => {
           data: data,
           callback: getComments
         });
-        console.log(getComments.length);
       });
   });
 });
 
 router.post("/products/product_id=:id", (req, res) => {
+  let shopIdUrl = req.params.id;
+
+  console.log(req.ip);
+
   let obj = {
     name: req.body.nickname,
     RFR: req.body.RFR,
@@ -68,7 +71,19 @@ router.post("/products/product_id=:id", (req, res) => {
   })
     .save()
     .then(callback => {
-      res.redirect("/nubia/products/product_id=" + req.params.id);
+      models.nubiaProduct.findOne({ _id: shopIdUrl }, function(err, data) {
+        if (err) return console.error(err);
+        models.nubiaProdComment
+          .find({ commentId: shopIdUrl })
+          .exec((err, getComments) => {
+            if (err) return console.error(err);
+            res.render("shop", {
+              title: "Shop",
+              data: data,
+              callback: getComments
+            });
+          });
+      });
     });
 });
 
