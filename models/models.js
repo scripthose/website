@@ -37,6 +37,11 @@ const scriptorSchema = new Schema({
   }
 });
 
+const productCategory = new Schema({
+  name: String,
+  products: [{type: Schema.Types.ObjectId, ref: 'nubiaProducts'}],
+});
+
 // nubia products schema
 const nubiaProductSchema = new Schema({
   prodName: String,
@@ -44,8 +49,8 @@ const nubiaProductSchema = new Schema({
   prodPrice: Number,
   prodDesc: String,
   prodLove: Number,
-  prodCategory: { type: String, required: true }, // product categories
-  prodTags: { type: String }
+  prodCategory: {type: Schema.Types.ObjectId, ref: 'prodCategory'}, // product categories
+  prodTags: String
 });
 
 // portfolio templates schema
@@ -64,11 +69,13 @@ const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
 const nubiaProduct = mongoose.model("nubiaProducts", nubiaProductSchema);
+const ProductCat = mongoose.model("prodCategory", productCategory);
 
 // exporting the models outside of the
 module.exports = {
   scriptor,
   nubiaProduct,
+  ProductCat,
   question,
   template,
   answer,

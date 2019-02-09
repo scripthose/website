@@ -7,12 +7,15 @@ const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 
 // app modules
-const router = require("./routes");
-const nubiaRoute = require("./routes/nubia");
-const blogRoutes = require("./routes/blog");
-const portfolioRoutes = require("./routes/portfolio");
 const keys = require("./authentication/keys");
 const SocketServer = require("./socketServer");
+
+// Routes
+const router = require("./routes");
+const apiRoutes = require('./api/index');
+const blogRoutes = require("./routes/blog");
+const nubiaRoute = require("./routes/nubia");
+const portfolioRoutes = require("./routes/portfolio");
 
 // initilaizations
 const app = express();
@@ -25,9 +28,10 @@ app.use(express.static(path.join(__dirname, "home"))); // use a static resources
 
 // routes
 app.use("/", router); // index routes
-app.use("/", portfolioRoutes); // blog routes
+app.use("/api", apiRoutes); // API routes
 app.use("/blog", blogRoutes); // blog routes
-app.use("/nubia", nubiaRoute); // blog routes
+app.use("/", portfolioRoutes); // portfolio routes
+app.use("/nubia", nubiaRoute); // nubia routes
 
 app.set("view engine", "ejs"); // setup views engine
 app.set("views", path.join(__dirname, "home")); // setup views dir
