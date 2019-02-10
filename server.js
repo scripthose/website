@@ -12,13 +12,10 @@ const SocketServer = require("./socketServer");
 
 // Routes
 const router = require("./routes");
-const apiRoutes = require('./api/index');
+const apiRoutes = require("./api/index");
 const blogRoutes = require("./routes/blog");
-<<<<<<< HEAD
 const payment = require("./routes/payment");
-=======
 const nubiaRoute = require("./routes/nubia");
->>>>>>> 0c0fd84b276ab28c9826fcec1d47c7e027174f64
 const portfolioRoutes = require("./routes/portfolio");
 
 // initilaizations
@@ -32,12 +29,9 @@ app.use(express.static(path.join(__dirname, "home"))); // use a static resources
 
 // routes
 app.use("/", router); // index routes
-<<<<<<< HEAD
 app.use("/", portfolioRoutes); // blog routes
 app.use(payment); // blog routes
-=======
 app.use("/api", apiRoutes); // API routes
->>>>>>> 0c0fd84b276ab28c9826fcec1d47c7e027174f64
 app.use("/blog", blogRoutes); // blog routes
 app.use("/", portfolioRoutes); // portfolio routes
 app.use("/nubia", nubiaRoute); // nubia routes
