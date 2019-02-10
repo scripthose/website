@@ -59,41 +59,39 @@
               <% bestSells.forEach(function(inf){ %>
                 <div class="product-container"  >
                   <div class="pic-cont">
-                    <img src="<%= inf.prodPic %>" alt="">
+                    <a href="http://127.0.0.1:2000/nubia/products/product_id=<%= inf.id %>"><img src="<%= inf.prodPic %>" alt=""></a>
                   </div>
                   <div class="tooltip-download">
                     <p class="prod-title"><%= inf.prodName %></p>
                     <div class="download">
-                      <span class="price">$<%= inf.prodPrice %></span>
-                      <span class="script-btn-black">
-                        <span>Download</span> 
-                      </span>
+                      
+                      
+                        <% if(inf.prodPrice === 0) {%>
+                          <span class="price"><strike>$<%= inf.prodPrice %>.00</strike> Free</span>
+                          <a href="<%= inf.prodPic %>" download> 
+                            <span class="script-btn-black">
+                              <span>Download</span>
+                              
+                            </span>
+                          </a>
+                        <% }else{ %>
+                          <span class="price"> $<%= inf.prodPrice %>.00</span>
+                          <a href="http://127.0.0.1:2000/checkout/product_id=<%= inf._id %>?product_name=<%= inf.prodName %>"> 
+                              <span class="script-btn-black" style="background:rgb(63, 161, 145)">
+                                <span>Purchase</span>
+                              </span>
+                            </a>
+                        <% } %>
+                        
+                      
                     </div>
                     <span><%= inf.prodDesc %>...</span>
                   </div>
                 </div>
-                  <!-- <a href="http://127.0.0.1:2000/nubia/products/product_id=<%= inf.id %>?name=<%= inf.prodName %>"> -->
-                              
+                  <!-- <a href="http://127.0.0.1:2000/nubia/products/product_id=<%= inf.id %>?name=<%= inf.prodName %>"> -->          
               <% }) %>
           </div>
-          <div class="download-payment">
-            <div class="container">
-              <div class="col-6" >
-                <div class="possible-due">
-                  <h4>FREE Creative Commons License</h4>
-                  <span>You can use this this Product for free in your projects testing or 
-                    multimedia like (Facebook, Youtube and Personal Logos)
-                    as long as you credit Scripthouse.com (in the description for a video). </span>
-                    <a href="#"><span class="script-btn-black" onclick="alert('hello')" style="position:absolute; bottom:10px; left:35%;">Download Now</span></a>
-                </div>
-              </div><div class="col-6" style="border-left: 1px solid rgba(172, 171, 171, 0.863)">
-                  <h4>Pro License for $55</h4>
-                    <span>You can pay the pro license then you own the product, you can use anywhere at all.</span>
-                    <a href="#"><span class="script-btn-black" onclick="alert('hello')" style="background: rgb(43, 143, 143);position:absolute; bottom:10px; left:35%;">Purchase Now</span></a>
-                </div>
-
-            </div>
-          </div>
+          
           <!-- Pagination -->
           <nav aria-label="Page navigation">
             <ul class="pagination">

@@ -15,6 +15,7 @@ const nubiaProductSchema = new Schema({
   prodDesc: String,
   prodLove: Number,
   prodCategory: { type: Schema.Types.ObjectId, ref: "prodCategory" }, // product categories
+  prodLicense: { type: Boolean, required: true },
   prodTags: String
 });
 

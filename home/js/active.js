@@ -246,28 +246,4 @@
     });
   }
   parallaxEffect();
-
-  let nubiaPay = $(".script-btn-black");
-  let nubiaPayCont = $(".download-payment .container");
-
-  let switchToPay = () => {
-    $(".download-payment").fadeIn();
-    setTimeout(function() {
-      $(nubiaPayCont).css({
-        top: "0",
-        opacity: "1"
-      });
-    }, 500);
-  };
-
-  // start pay + download function
-  nubiaPay.on("click", switchToPay);
-  $(".download-payment").on("click", function() {
-    $(".download-payment").fadeOut();
-
-    $(nubiaPayCont).css({
-      top: "10%",
-      opacity: "0"
-    });
-  });
 })(jQuery);
