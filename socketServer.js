@@ -45,20 +45,22 @@ function SocketServer(io) {
       .limit(4);
 
     socket.on("getAllProducts", () => {
-      models.nubiaProduct.find(function(err, prod) {
-        if (err) return console.error(err);
-        prod.forEach(function(p) {
-          socket.emit("sendAllProducts", {
-            prodId: p.id,
-            prodName: p.prodName,
-            prodPic: p.prodPic,
-            prodPrice: p.prodPrice,
-            prodDesc: p.prodDesc,
-            prodCategory: p.prodCategory
+      models.nubiaProduct
+        .find(function(err, prod) {
+          if (err) return console.error(err);
+          prod.forEach(function(p) {
+            socket.emit("sendAllProducts", {
+              prodId: p.id,
+              prodName: p.prodName,
+              prodPic: p.prodPic,
+              prodPrice: p.prodPrice,
+              prodDesc: p.prodDesc,
+              prodCategory: p.prodCategory
+            });
           });
-        });
-        socket.emit("getProdLength", prod);
-      });
+          socket.emit("getProdLength", prod);
+        })
+        .sort({ $natural: -1 });
     });
   });
 }
