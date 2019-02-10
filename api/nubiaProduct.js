@@ -1,10 +1,10 @@
-function nubiaProduct(router, models) {
+function nubiaProduct(router, nubiaProduct) {
 
   // Nubia Products Routes
   router.route(/nubiaProducts\/?$/)
 
     .get((req, res) => {
-      models.nubiaProduct
+      nubiaProduct
         .find()
         .populate('prodCategory', 'name')
         .exec((err, data) => {
@@ -15,18 +15,18 @@ function nubiaProduct(router, models) {
 
     .post((req, res) => {
       let body = req.body;
-      if (!body.prodCategory) body.prodCategory = "";
-      models.nubiaProduct.create(body, (err, prod) => {
-        if (err) res.json({Error: 500})
-        res.json(prod)
-      })
+      if (!body.prodCategory) body.prodCategory = "5c6028e83c046021940aa001";
+      let prod = new nubiaProduct(body);
+      prod.save().then((prod) => {
+        res.json(prod);
+      }).catch(err => console.error(err));
     })
 
   router.route('/nubiaProducts/:id')
 
     .get((req, res) => {
       let id = req.params.id;
-      models.nubiaProduct
+      nubiaProduct
         .findById(id)
         .populate('prodCategory', 'name')
         .exec((err, prod) => {
@@ -38,7 +38,7 @@ function nubiaProduct(router, models) {
     .patch((req, res) => {
       let id = req.params.id;
       let fields = req.body;
-      models.nubiaProduct.findById(id, (err, prod) => {
+      nubiaProduct.findById(id, (err, prod) => {
         if (err) return res.json({Error: 404});
         for (let key in fields) {
           if (prod[key]) {
@@ -53,9 +53,12 @@ function nubiaProduct(router, models) {
 
     .delete((req, res) => {
       let id = req.params.id;
-      models.nubiaProduct.deleteOne({_id: id}, (err, deleted) => {
+      nubiaProduct.findOne({_id: id}, (err, doc) => {
         if (err) res.json({Error: 500});
-        res.json(deleted);
+        doc.remove((err, deleted) => {
+          if (err) return res.json(err);
+          res.json(deleted);
+        });
       });
     })
 
