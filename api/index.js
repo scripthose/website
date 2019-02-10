@@ -2,6 +2,7 @@ const express = require('express');
 const models = require('../models/models');
 
 const nubiaProduct = require('./nubiaProduct');
+const prodCategory = require('./prodCategory');
 
 const router = express.Router();
 
@@ -11,6 +12,9 @@ router.get('/', (req, res) => {
 });
 
 // nubiaProduct Routs
-nubiaProduct(router, models);
+nubiaProduct(router, models.nubiaProduct);
+
+// prodCategory Routes
+prodCategory(router, models.prodCategory);
 
 module.exports = router;
