@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { nubiaProduct, prodCategoryModal } = require("./nubiaProducts");
+const { nubiaProducts, prodCategoryModal } = require("./nubiaProducts");
 
 const Schema = mongoose.Schema;
 
@@ -72,7 +72,7 @@ const answer = mongoose.model("answers", Answer);
 const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
-const nubiaProduct = mongoose.model("nubiaProducts", nubiaProductSchema);
+const nubiaProduct = mongoose.model("nubiaproducts", nubiaProductSchema);
 const nubiaProdComment = mongoose.model(
   "nubiaProdComment",
   nubiaProductCommentsSchema
