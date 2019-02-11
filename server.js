@@ -4,6 +4,7 @@ const path = require("path");
 // external modules
 const express = require("express");
 const mongoose = require("mongoose");
+const paypalRestSdk = require("paypal-rest-sdk");
 const bodyParser = require("body-parser");
 
 // app modules

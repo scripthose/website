@@ -192,7 +192,11 @@
             <h5>$<%= callback.prodPrice %>.00</h5>
           </div>
           <div class="checkout-btn mt-30">
-            <a href="#" class="btn script-btn w-100">Place Order</a>
+            <a
+              href="http://127.0.0.1:2000/api/payment/id=<%= callback.id %>"
+              class="btn script-btn w-100"
+              >Place Order</a
+            >
           </div>
         </div>
       </div>

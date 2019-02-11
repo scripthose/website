@@ -66,12 +66,18 @@ const Template = new Schema({
   projectLink: String
 });
 
+const shopedClients = new Schema({
+  clinetName: String,
+  clientID: { type: String, required: true }
+});
+
 // create the schema on the database
 const tag = mongoose.model("tags", Tag);
 const answer = mongoose.model("answers", Answer);
 const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
+const clientInfo = mongoose.model("clientInfo", shopedClients);
 const nubiaProduct = mongoose.model("nubiaproducts", nubiaProductSchema);
 const nubiaProdComment = mongoose.model(
   "nubiaProdComment",
@@ -84,6 +90,7 @@ module.exports = {
   nubiaProduct,
   scriptor,
   prodCategory: prodCategoryModal,
+  clientInfo: clientInfo,
   question,
   template,
   answer,
