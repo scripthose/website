@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { nubiaProducts, prodCategoryModal } = require("./nubiaProducts");
+const { nubiaProduct, prodCategoryModal } = require("./nubiaProduct");
 
 const Schema = mongoose.Schema;
 
@@ -67,11 +67,8 @@ const answer = mongoose.model("answers", Answer);
 const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
-<<<<<<< HEAD
 const clientInfo = mongoose.model("clientInfo", shopedClients);
-const nubiaProduct = mongoose.model("nubiaproducts", nubiaProductSchema);
-=======
->>>>>>> 9bf8b10d07b20f8e40689dbb9a6257a55daebff5
+// const nubiaProducts = mongoose.model("nubiaproducts", nubiaProductSchema);
 const nubiaProdComment = mongoose.model(
   "nubiaProdComment",
   nubiaProductCommentsSchema
@@ -80,7 +77,7 @@ const nubiaProdComment = mongoose.model(
 // exporting the models outside of the
 module.exports = {
   nubiaProdComment,
-  nubiaProduct: nubiaProducts,
+  nubiaProduct: nubiaProduct,
   scriptor,
   prodCategory: prodCategoryModal,
   clientInfo: clientInfo,
