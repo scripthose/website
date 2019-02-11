@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { nubiaProduct, prodCategoryModal } = require("./nubiaProducts");
+const { nubiaProducts, prodCategoryModal } = require("./nubiaProducts");
 
 const Schema = mongoose.Schema;
 
@@ -39,16 +39,6 @@ const scriptorSchema = new Schema({
   }
 });
 
-// nubia products schema
-const nubiaProductSchema = new Schema({
-  prodName: String,
-  prodPic: String,
-  prodPrice: Number,
-  prodDesc: String,
-  prodLove: Number,
-  prodCategory: { type: String, required: true }, // product categories
-  prodTags: { type: String }
-});
 const nubiaProductCommentsSchema = new Schema({
   commentId: String,
   rate: { type: String, required: false },
@@ -80,7 +70,7 @@ const nubiaProdComment = mongoose.model(
 // exporting the models outside of the
 module.exports = {
   nubiaProdComment,
-  nubiaProduct,
+  nubiaProduct: nubiaProducts,
   scriptor,
   prodCategory: prodCategoryModal,
   question,
