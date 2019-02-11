@@ -328,7 +328,7 @@ img {
 }
 
 /* :: 3.8.0 alazea Button */
-.alazea-btn {
+.alazea-btn, .script-btn{
   -webkit-transition-duration: 400ms;
   transition-duration: 400ms;
   position: relative;
@@ -348,7 +348,10 @@ img {
 }
 .alazea-btn.active,
 .alazea-btn:hover,
-.alazea-btn:focus {
+.alazea-btn:focus,
+.script-btn.active,
+.script-btn:hover,
+.script-btn:focus {
   font-size: 16px;
   color: #70c745;
   font-weight: 600;

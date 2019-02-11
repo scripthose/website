@@ -63,19 +63,11 @@
                         </div>
 
                         <div class="cart--area d-flex flex-wrap align-items-center">
-                            <!-- Add to Cart Form -->
-                            <form class="cart clearfix d-flex align-items-center" method="get" action="#">
-                                <div class="quantity">
-                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) && qty > 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
-                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
-                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
-                                </div>
-                                <button type="submit" name="addtocart" value="1" class="btn alazea-btn ml-15">Add to cart</button>
-                            </form>
+                            <a href="/checkout/product_id=<%= data._id %>?product_name=<%= data.prodName %>" class="btn script-btn ml-15">Checkout Now</a>
                             <!-- Wishlist & Compare -->
                             <div class="wishlist-compare d-flex flex-wrap align-items-center">
                                 <a href="#" class="wishlist-btn ml-15"><i class="icon_heart_alt"></i></a>
-                                <a href="#" class="compare-btn ml-15"><i class="arrow_left-right_alt"></i></a>
+                                <!-- <a href="#" class="compare-btn ml-15"><i class="arrow_left-right_alt"></i></a> -->
                             </div>
                         </div>
 
@@ -83,15 +75,7 @@
                             <p><span>SKU:</span> <span>NON EXISTED</span></p>
                             <p><span>Category:</span> <span><%= data.prodCategory %> </span></p>
                             <p><span>Tags:</span> <span><%= data.prodTags %></span></p>
-                            <p>
-                                <span>Share on:</span>
-                                <span>
-                                <a href=""><i class="fa fa-facebook"></i></a>
-                                <a href="#"><i class="fa fa-twitter"></i></a>
-                                <a href="#"><i class="fa fa-pinterest"></i></a>
-                                <a href="#"><i class="fa fa-google-plus"></i></a>
-                            </span>
-                            </p>
+                            
                         </div>
 
                     </div>
@@ -113,7 +97,7 @@
                             <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional Information</a>
                         </li>
                         <li class="nav-item">
-                            <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(1)</span></a>
+                            <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(<%= callback.length %>)</span></a>
                         </li>
                     </ul>
                     <!-- Tab Content -->
@@ -140,52 +124,29 @@
                             <div class="reviews_area">
                                 <ul>
                                     <li>
-                                        <div class="single_user_review mb-15">
-                                            <div class="review-rating">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>for Quality</span>
-                                            </div>
-                                            <div class="review-details">
-                                                <p>by <a href="#">Colorlib</a> on <span>12 Sep 2018</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="single_user_review mb-15">
-                                            <div class="review-rating">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>for Design</span>
-                                            </div>
-                                            <div class="review-details">
-                                                <p>by <a href="#">Colorlib</a> on <span>12 Sep 2018</span></p>
-                                            </div>
-                                        </div>
-                                        <div class="single_user_review">
-                                            <div class="review-rating">
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <i class="fa fa-star" aria-hidden="true"></i>
-                                                <span>for Value</span>
-                                            </div>
-                                            <div class="review-details">
-                                                <p>by <a href="#">Colorlib</a> on <span>12 Sep 2018</span></p>
-                                            </div>
-                                        </div>
+                                        <% callback.forEach((data) => { %>
+                                            <div class="single_user_review mb-15">
+                                                    <div class="review-rating">
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <i class="fa fa-star" aria-hidden="true"></i>
+                                                        <span>for <%= data.RFR %></span>
+                                                    </div>
+                                                    <div class="review-details">
+                                                        <p>by <a href="mailto:<%= data.name %>"><%= data.name %></a> on <span>12 Sep 2018</span></p>
+                                                    </div>
+                                                </div>
+                                        <% }) %>
+                                        
                                     </li>
                                 </ul>
                             </div>
 
                             <div class="submit_a_review_area mt-50">
                                 <h4>Submit A Review</h4>
-                                <form action="#" method="post">
+                                <form action="/nubia/products/product_id=<%= data.id %>?<%= data.prodName.split(' ').join('-').toLowerCase() %>" method="post">
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="form-group d-flex align-items-center">
@@ -209,13 +170,13 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="name">Nickname</label>
-                                                <input type="email" class="form-control" id="name" placeholder="Your Nickname">
+                                                <input type="email" class="form-control" name="nickname" id="name" placeholder="Your Nickname">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label for="options">Reason for your rating</label>
-                                                <select class="form-control" id="options">
+                                                <select class="form-control" id="options" name="RFR">
                                                         <option>Quality</option>
                                                         <option>Value</option>
                                                         <option>Design</option>
@@ -227,11 +188,11 @@
                                         <div class="col-12">
                                             <div class="form-group">
                                                 <label for="comments">Comments</label>
-                                                <textarea class="form-control" id="comments" rows="5" data-max-length="150"></textarea>
+                                                <textarea class="form-control" id="comments" name="comment" rows="5" data-max-length="150"></textarea>
                                             </div>
                                         </div>
                                         <div class="col-12">
-                                            <button type="submit" class="btn alazea-btn">Submit Your Review</button>
+                                            <button type="submit" class="btn script-btn">Submit Your Review</button>
                                         </div>
                                     </div>
                                 </form>
@@ -245,53 +206,6 @@
     </div>
 </section>
 <!-- ##### Single Product Details Area End ##### -->
-
-<!-- ##### Related Product Area Start ##### -->
-<div class="related-products-area">
-    <div class="container">
-        <div class="row">
-            <div class="col-12">
-                <!-- Section Heading -->
-                <div class="section-heading text-center">
-                    <h2>Related Products</h2>
-                </div>
-                <div class="col-12 col-sm-6 col-lg-3">
-                        <div class="single-product-area mb-50">
-                            <div class="product-img">
-                                <img src="http://127.0.0.1:2000/img/bg-img/46.png" alt=""></a>
-                                <div class="product-meta d-flex">
-                                    <a href="#" class="wishlist-btn" style="visibility: hidden;">
-                                        <i class="icon_heart_alt"></i>
-                                    </a>
-                                    <a href="#" class="add-to-cart-btn">Add to cart</a>
-                                    <a href="#" class="compare-btn" style="visibility: hidden;">
-                                        <i class="arrow_left-right_alt"></i>
-                                    </a>
-                                </div>
-                            </div>
-                            <div class="product-info mt-15 text-center">
-                                <a href="http://127.0.0.1:2000/nubia/products/product_number=${
-                                  prod.prodId
-                                }">
-                                    <p>Testing Prod</p>
-                                </a>
-                                <h6>$10</h6>
-                            </div>
-                        </div>
-                    </div>
-            </div>
-        </div>
-
-        <div class="row" id="handle-products">
-
-            <!-- Single Product Area -->
-            
-        
-
-        </div>
-    </div>
-</div>
-<!-- ##### Related Product Area End ##### -->
 
 <!-- ##### Footer Area Start ##### -->
 <% include partials/footer %>

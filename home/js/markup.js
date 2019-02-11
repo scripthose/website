@@ -90,9 +90,9 @@ app.markups = {
                         </div>
                     </div>
                     <div class="product-info mt-15 text-center">
-                        <a href="http://127.0.0.1:2000/nubia/products/product_number=${
+                        <a href="http://127.0.0.1:2000/nubia/products/product_id=${
                           prod.prodId
-                        }">
+                        }?name=${prod.prodName}?category=${prod.prodCategory}">
                             <p>${prod.prodName}</p>
                         </a>
                         <h6>$${prod.prodPrice}</h6>

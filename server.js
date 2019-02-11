@@ -12,8 +12,9 @@ const SocketServer = require("./socketServer");
 
 // Routes
 const router = require("./routes");
-const apiRoutes = require('./api/index');
+const apiRoutes = require("./api/index");
 const blogRoutes = require("./routes/blog");
+const payment = require("./routes/payment");
 const nubiaRoute = require("./routes/nubia");
 const portfolioRoutes = require("./routes/portfolio");
 
@@ -28,6 +29,8 @@ app.use(express.static(path.join(__dirname, "home"))); // use a static resources
 
 // routes
 app.use("/", router); // index routes
+app.use("/", portfolioRoutes); // blog routes
+app.use(payment); // blog routes
 app.use("/api", apiRoutes); // API routes
 app.use("/blog", blogRoutes); // blog routes
 app.use("/", portfolioRoutes); // portfolio routes

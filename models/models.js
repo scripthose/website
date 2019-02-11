@@ -1,9 +1,6 @@
 const mongoose = require("mongoose");
 
-const {
-  nubiaProduct,
-  prodCategoryModal
-} = require('./nubiaProduct');
+const { nubiaProduct, prodCategoryModal } = require("./nubiaProducts");
 
 const Schema = mongoose.Schema;
 
@@ -42,6 +39,24 @@ const scriptorSchema = new Schema({
   }
 });
 
+// nubia products schema
+const nubiaProductSchema = new Schema({
+  prodName: String,
+  prodPic: String,
+  prodPrice: Number,
+  prodDesc: String,
+  prodLove: Number,
+  prodCategory: { type: String, required: true }, // product categories
+  prodTags: { type: String }
+});
+const nubiaProductCommentsSchema = new Schema({
+  commentId: String,
+  rate: { type: String, required: false },
+  name: { type: String, required: true },
+  RFR: { type: String, required: true },
+  comment: { type: String, required: true }
+});
+
 // portfolio templates schema
 const Template = new Schema({
   projectName: String,
@@ -57,11 +72,16 @@ const answer = mongoose.model("answers", Answer);
 const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
+const nubiaProdComment = mongoose.model(
+  "nubiaProdComment",
+  nubiaProductCommentsSchema
+);
 
 // exporting the models outside of the
 module.exports = {
-  scriptor,
+  nubiaProdComment,
   nubiaProduct,
+  scriptor,
   prodCategory: prodCategoryModal,
   question,
   template,
