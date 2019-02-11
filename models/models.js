@@ -39,16 +39,6 @@ const scriptorSchema = new Schema({
   }
 });
 
-// nubia products schema
-const nubiaProductSchema = new Schema({
-  prodName: String,
-  prodPic: String,
-  prodPrice: Number,
-  prodDesc: String,
-  prodLove: Number,
-  prodCategory: { type: String, required: true }, // product categories
-  prodTags: { type: String }
-});
 const nubiaProductCommentsSchema = new Schema({
   commentId: String,
   rate: { type: String, required: false },
@@ -77,8 +67,11 @@ const answer = mongoose.model("answers", Answer);
 const template = mongoose.model("template", Template);
 const question = mongoose.model("questions", Question);
 const scriptor = mongoose.model("scriptors", scriptorSchema);
+<<<<<<< HEAD
 const clientInfo = mongoose.model("clientInfo", shopedClients);
 const nubiaProduct = mongoose.model("nubiaproducts", nubiaProductSchema);
+=======
+>>>>>>> 9bf8b10d07b20f8e40689dbb9a6257a55daebff5
 const nubiaProdComment = mongoose.model(
   "nubiaProdComment",
   nubiaProductCommentsSchema
@@ -87,7 +80,7 @@ const nubiaProdComment = mongoose.model(
 // exporting the models outside of the
 module.exports = {
   nubiaProdComment,
-  nubiaProduct,
+  nubiaProduct: nubiaProducts,
   scriptor,
   prodCategory: prodCategoryModal,
   clientInfo: clientInfo,
