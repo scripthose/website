@@ -1,7 +1,7 @@
 const express = require('express');
 const models = require('../models/models');
 
-const nubiaProduct = require('./nubiaProducts');
+const nubiaProduct = require('./nubiaProduct');
 const prodCategory = require('./prodCategory');
 
 const router = express.Router();
