@@ -55,23 +55,22 @@
       <!-- All Products Area -->
       <div class="col-12 col-md-12 col-lg-12">
         <div class="shop-products-area">
-          <div class="row" id="handle-all-prod">
+          <div class="row" id="handle-all-prod" style="margin-left:40px">
               <% bestSells.forEach(function(inf){ %>
                 <div class="product-container"  >
                   <div class="pic-cont">
                     <a href="http://127.0.0.1:2000/nubia/products/product_id=<%= inf.id %>"><img src="<%= inf.prodPic %>" alt=""></a>
                   </div>
                   <div class="tooltip-download">
-                    <p class="prod-title"><%= inf.prodName %></p>
+                    <p class="prod-title"><strong><%= inf.prodName %></strong></p>
                     <div class="download">
                       
                       
                         <% if(inf.prodPrice === 0) {%>
-                          <span class="price"><strike>$<%= inf.prodPrice %>.00</strike> Free</span>
+                          <span class="price"><strike>$<%= inf.prodPrice %>.00</strike> <span style="font-size:10px;">Free</span></span>
                           <a href="<%= inf.prodPic %>" download> 
-                            <span class="script-btn-black">
+                            <span class="script-btn-black" style="margin-left:-5px">
                               <span>Download</span>
-                              
                             </span>
                           </a>
                         <% }else{ %>
@@ -85,7 +84,7 @@
                         
                       
                     </div>
-                    <span><%= inf.prodDesc %>...</span>
+                    <span style="font-size:12px"><%= inf.prodDesc %>...</span>
                   </div>
                 </div>
                   <!-- <a href="http://127.0.0.1:2000/nubia/products/product_id=<%= inf.id %>?name=<%= inf.prodName %>"> -->          
