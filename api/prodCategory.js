@@ -1,6 +1,6 @@
 function prodCategory(router, prodCategory) {
 
-  router.route(/categories\/?/)
+  router.route(/categories\/?$/)
 
     .get((req, res) => {
       prodCategory.find()
