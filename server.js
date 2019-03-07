@@ -9,7 +9,6 @@ const bodyParser = require("body-parser");
 
 // app modules
 const keys = require("./authentication/keys");
-const SocketServer = require("./socketServer");
 
 // Routes
 const router = require("./routes");
@@ -22,7 +21,6 @@ const portfolioRoutes = require("./routes/portfolio");
 // initilaizations
 const app = express();
 const server = require("http").createServer(app);
-const io = require("socket.io").listen(server);
 
 app.use(bodyParser.json()); // use bodyParser to parse json
 app.use(bodyParser.urlencoded({ extended: false })); // use bodyParser to parse req body
@@ -30,12 +28,11 @@ app.use(express.static(path.join(__dirname, "home"))); // use a static resources
 
 // routes
 app.use("/", router); // index routes
-app.use("/", portfolioRoutes); // blog routes
-app.use(payment); // blog routes
 app.use("/api", apiRoutes); // API routes
 app.use("/blog", blogRoutes); // blog routes
-app.use("/", portfolioRoutes); // portfolio routes
 app.use("/nubia", nubiaRoute); // nubia routes
+app.use("/checkout", payment); // blog routes
+app.use("/portfolio", portfolioRoutes); // blog routes
 
 app.set("view engine", "ejs"); // setup views engine
 app.set("views", path.join(__dirname, "home")); // setup views dir
@@ -55,9 +52,6 @@ mongoose.connect(keys.database.dbURI, { useNewUrlParser: true }, (err) => {
   if(err) return console.error(err)
   console.log("Opened a new connection..");
 });
-
-// start the socket server;
-SocketServer(io);
 
 // start listening on the configured (port, host);
 server.listen(PORT, HOST, () => {

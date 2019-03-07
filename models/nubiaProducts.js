@@ -58,10 +58,10 @@ nubiaProductSchema.pre("remove", function(next) {
   });
 });
 
-const nubiaProducts = mongoose.model("nubiaProducts", nubiaProductSchema);
+const nubiaProduct = mongoose.model("nubiaProducts", nubiaProductSchema);
 const prodCategoryModal = mongoose.model("prodCategory", prodCategory);
 
 module.exports = {
-  nubiaProducts,
+  nubiaProduct,
   prodCategoryModal
 };

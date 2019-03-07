@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const { nubiaProduct, prodCategoryModal } = require("./nubiaProduct");
+const { nubiaProduct, prodCategoryModal } = require("./nubiaProducts");
 
 const Schema = mongoose.Schema;
 
@@ -77,7 +77,7 @@ const nubiaProdComment = mongoose.model(
 // exporting the models outside of the
 module.exports = {
   nubiaProdComment,
-  nubiaProduct: nubiaProduct,
+  nubiaProduct,
   scriptor,
   prodCategory: prodCategoryModal,
   clientInfo: clientInfo,

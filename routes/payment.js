@@ -7,7 +7,7 @@ const clientsID = [] || "5c612495378b2b3234a099cf";
 
 const keys = require("../authentication/payment-auth");
 
-route.get("/checkout/product_id=:id?", (req, res) => {
+route.get("/product_id=:id?", (req, res) => {
   models.nubiaProduct.findOne({ _id: req.params.id }).exec((err, callback) => {
     if (err) return console.log(err);
 
