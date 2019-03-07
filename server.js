@@ -51,7 +51,8 @@ app.use(function(req, res, next) {
 });
 
 // make the database connection.
-mongoose.connect(keys.database.local, { useNewUrlParser: true }, () => {
+mongoose.connect(keys.database.dbURI, { useNewUrlParser: true }, (err) => {
+  if(err) return console.error(err)
   console.log("Opened a new connection..");
 });
 

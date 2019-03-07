@@ -6,10 +6,10 @@ router.get("/questions/new/", (req, res) => {
   res.render("question-blog", { title: "new question" });
 });
 // the blog route
-router.get("", (req, res) => {
+router.get("/", (req, res) => {
   models.question
     .find()
-    .populate(["answers", "tags"])
+    .sort({ $natural: -1 })
     .exec((err, questions) => {
       if (err) {
         console.error(err);

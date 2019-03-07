@@ -15,6 +15,7 @@ router.get("/", (req, res) => {
         bestSells: bestSells
       });
     });
+  console.log(res);
 });
 
 // send the products limit show the best sells
